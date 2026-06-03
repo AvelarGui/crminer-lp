@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CRMiner — Transforme visitantes em oportunidades</title>
+<meta name="description" content="O CRMiner captura leads antes da venda. Transforme cada pessoa que vê sua vitrine, escaneia um QR Code ou interage com seus canais em uma oportunidade de relacionamento." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/index.css" />
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header id="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="#hero" aria-label="CRMiner — início">
+      <img src="assets/logo/logo_white.png" alt="CRMiner" />
+    </a>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="#cta" aria-label="Ver demonstração do CRMiner">Ver demonstração</a>
+      <a class="btn btn-primary" href="#cta" aria-label="Começar gratuitamente com o CRMiner">Começar Gratuitamente</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ HERO — Signal Network ============ -->
+  <section id="hero-scroll-driver">
+    <div id="hero-sticky">
+
+      <!-- Background color -->
+      <div class="hero-bg" aria-hidden="true"></div>
+
+      <!-- Cinematic depth mask -->
+      <div class="hero-depth-mask" aria-hidden="true"></div>
+
+      <!-- Subtle logo silhouette -->
+      <div class="hero-logo-bg" aria-hidden="true">
+        <img src="assets/logo/logo_white_linha.png" alt="">
+      </div>
+
+      <!-- Signal canvas (dots + connections + labels) -->
+      <canvas id="hero-signals-canvas" aria-hidden="true"></canvas>
+
+      <!-- Centered copy -->
+      <div class="hero-content">
+        <span class="hc-badge"><span class="dot"></span>Uma nova categoria no varejo físico</span>
+        <h1 id="hero-title">
+          Transforme visitantes em
+          <span class="gold-text">oportunidades.</span>
+        </h1>
+        <p class="hc-lead">
+          Sua loja recebe muito mais interesse do que vendas.<br>
+          O CRMiner ajuda você a capturar esse interesse antes que ele desapareça.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#cta" aria-label="Começar gratuitamente com o CRMiner">Começar Gratuitamente</a>
+          <a class="btn-link" href="#how" aria-label="Ver demonstração do CRMiner">
+            Ver demonstração
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Scroll-driven metric cards (full width, one at a time) -->
+      <div class="hero-cards" aria-live="polite">
+        <div class="hero-card" data-step="1">
+          <div class="hero-card-number">47</div>
+          <div class="hero-card-divider"></div>
+          <div class="hero-card-label">passaram pela vitrine</div>
+        </div>
+        <div class="hero-card" data-step="2">
+          <div class="hero-card-number">200</div>
+          <div class="hero-card-divider"></div>
+          <div class="hero-card-label">clicaram no Instagram</div>
+        </div>
+        <div class="hero-card" data-step="3">
+          <div class="hero-card-number">89</div>
+          <div class="hero-card-divider"></div>
+          <div class="hero-card-label">visitaram a loja</div>
+        </div>
+        <div class="hero-card" data-step="4">
+          <div class="hero-card-number">23</div>
+          <div class="hero-card-divider"></div>
+          <div class="hero-card-label">escanearam QR Code</div>
+        </div>
+        <div class="hero-card" data-step="5">
+          <div class="hero-card-number">12</div>
+          <div class="hero-card-divider"></div>
+          <div class="hero-card-label">abriram o WhatsApp</div>
+        </div>
+      </div>
+
+      <!-- Finale overlay -->
+      <div class="hero-finale" aria-hidden="true">
+        <p class="finale-line finale-line-1">O problema não é tráfego.</p>
+        <p class="finale-line finale-line-2">É <span class="gold-finale">captura.</span></p>
+
+        <button class="finale-scroll-cta" aria-label="Ver como o CRMiner resolve">
+          <span class="finale-scroll-label">Veja como resolver</span>
+          <span class="finale-scroll-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 5v14M5 15l7 7 7-7"/>
+            </svg>
+          </span>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ DOBRA 2 — SINAIS PERDIDOS ============ -->
+  <section class="dobra dobra-white" aria-labelledby="sig-title">
+    <div class="wrap dobra2-grid">
+
+      <!-- COLUNA ESQUERDA: Rede de sinais -->
+      <div class="dobra2-left">
+      <div class="network-wrap reveal" style="transition-delay:.04s">
+
+        <!-- SVG: linhas conectoras + pontos de luz animados -->
+        <svg class="network-svg" viewBox="0 0 800 560" preserveAspectRatio="xMidYMid meet"
+             xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <filter id="glow-line" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+              <feMerge>
+                <feMergeNode in="blur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+            <!-- Máscara que apaga linhas e pontos na borda do hub central -->
+            <!-- Hub CSS top:44% → SVG y = 44%×560 = 246 | raio CSS 60px → ~76 SVG units -->
+            <radialGradient id="hub-grad" cx="400" cy="246" r="82" gradientUnits="userSpaceOnUse">
+              <stop offset="0%"   stop-color="black"/>
+              <stop offset="87%"  stop-color="black"/>
+              <stop offset="100%" stop-color="white"/>
+            </radialGradient>
+            <mask id="hub-mask">
+              <rect width="800" height="560" fill="white"/>
+              <circle cx="400" cy="246" r="82" fill="url(#hub-grad)"/>
+            </mask>
+          </defs>
+          <!-- 7 linhas + dots agrupados com máscara do hub -->
+          <g mask="url(#hub-mask)">
+          <path class="net-line" id="nl-instagram" d="M 400 246 C 240 246 280 130 120 130"/>
+          <path class="net-line" id="nl-tiktok"    d="M 400 246 Q 240 246  80 280"/>
+          <path class="net-line" id="nl-google"    d="M 400 246 C 240 246 280 430 120 430"/>
+          <path class="net-line" id="nl-vitrine"   d="M 400 246 L 400  60"/>
+          <path class="net-line" id="nl-qr"        d="M 400 246 C 560 246 520 130 680 130"/>
+          <path class="net-line" id="nl-loja"      d="M 400 246 Q 560 246 720 280"/>
+          <path class="net-line" id="nl-whatsapp"  d="M 400 246 C 560 246 520 430 680 430"/>
+          <!-- Pontos de luz: saem do ícone → morrem no centro (fade-out) -->
+          <circle class="light-dot" r="4">
+            <animateMotion dur="3s"   repeatCount="indefinite" begin="0s"   keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#nl-instagram"/></animateMotion>
+            <animate attributeName="opacity" values="1;0" dur="3s"   repeatCount="indefinite" begin="0s"  />
+          </circle>
+          <circle class="light-dot" r="4">
+            <animateMotion dur="3.5s" repeatCount="indefinite" begin="0.5s" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#nl-tiktok"   /></animateMotion>
+            <animate attributeName="opacity" values="1;0" dur="3.5s" repeatCount="indefinite" begin="0.5s"/>
+          </circle>
+          <circle class="light-dot" r="4">
+            <animateMotion dur="4s"   repeatCount="indefinite" begin="1s"   keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#nl-google"   /></animateMotion>
+            <animate attributeName="opacity" values="1;0" dur="4s"   repeatCount="indefinite" begin="1s"  />
+          </circle>
+          <circle class="light-dot" r="4">
+            <animateMotion dur="2.5s" repeatCount="indefinite" begin="1.5s" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#nl-vitrine"  /></animateMotion>
+            <animate attributeName="opacity" values="1;0" dur="2.5s" repeatCount="indefinite" begin="1.5s"/>
+          </circle>
+          <circle class="light-dot" r="4">
+            <animateMotion dur="3.2s" repeatCount="indefinite" begin="0.8s" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#nl-qr"       /></animateMotion>
+            <animate attributeName="opacity" values="1;0" dur="3.2s" repeatCount="indefinite" begin="0.8s"/>
+          </circle>
+          <circle class="light-dot" r="4">
+            <animateMotion dur="3.8s" repeatCount="indefinite" begin="0.3s" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#nl-loja"     /></animateMotion>
+            <animate attributeName="opacity" values="1;0" dur="3.8s" repeatCount="indefinite" begin="0.3s"/>
+          </circle>
+          <circle class="light-dot" r="4">
+            <animateMotion dur="3.3s" repeatCount="indefinite" begin="1.2s" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#nl-whatsapp" /></animateMotion>
+            <animate attributeName="opacity" values="1;0" dur="3.3s" repeatCount="indefinite" begin="1.2s"/>
+          </circle>
+          </g>
+        </svg>
+
+        <!-- Centro: imagem circular -->
+        <div class="net-center">
+          <img src="assets/section_2.jpeg" alt="Visitante olhando vitrine de loja">
+        </div>
+        <div class="net-hub"></div>
+
+        <!-- Nodos — Esquerda -->
+        <div class="net-node net-node--left net-node--instagram">
+          <div class="net-node__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1.3" fill="currentColor" stroke="none"/></svg></div>
+          <div class="net-node__label"><strong>Instagram</strong><span>200 clicaram</span></div>
+        </div>
+        <div class="net-node net-node--left net-node--tiktok">
+          <div class="net-node__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v3M9 18c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm12-5c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2z"/></svg></div>
+          <div class="net-node__label"><strong>TikTok</strong><span>Assistiu seu vídeo</span></div>
+        </div>
+        <div class="net-node net-node--left net-node--google">
+          <div class="net-node__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.686 2 6 4.686 6 8c0 5.25 6 14 6 14s6-8.75 6-14c0-3.314-2.686-6-6-6z"/><circle cx="12" cy="8" r="2"/></svg></div>
+          <div class="net-node__label"><strong>Google Maps</strong><span>Pesquisou sua loja</span></div>
+        </div>
+
+        <!-- Nodo — Topo -->
+        <div class="net-node net-node--top net-node--vitrine">
+          <div class="net-node__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l2.45-6h13.1L21 9M3 9h18M3 9v1a3 3 0 006 0 3 3 0 006 0 3 3 0 006 0V9M5 21V11M19 21V11M5 21h14M9 21v-6h6v6"/></svg></div>
+          <div class="net-node__label"><strong>Vitrine</strong><span>47 passaram</span></div>
+        </div>
+
+        <!-- Nodos — Direita -->
+        <div class="net-node net-node--right net-node--qr">
+          <div class="net-node__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3M21 21v-3M17 21h-1"/></svg></div>
+          <div class="net-node__label"><strong>QR Code</strong><span>23 escanearam</span></div>
+        </div>
+        <div class="net-node net-node--right net-node--loja">
+          <div class="net-node__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg></div>
+          <div class="net-node__label"><strong>Loja física</strong><span>89 visitaram</span></div>
+        </div>
+        <div class="net-node net-node--right net-node--whatsapp">
+          <div class="net-node__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg></div>
+          <div class="net-node__label"><strong>WhatsApp</strong><span>12 iniciaram</span></div>
+        </div>
+
+      </div>
+      </div><!-- /dobra2-left -->
+
+      <!-- COLUNA DIREITA: Cabeçalho + fechamento -->
+      <div class="dobra2-right">
+        <div class="section-head">
+          <h2 id="sig-title" class="reveal">Sua loja recebe mais sinais do que vendas.</h2>
+          <p class="lead reveal" style="transition-delay:.08s">Em diversos canais. Todos os dias.</p>
+        </div>
+
+        <div class="signals-close reveal">
+          
+          <div class="q">Quantos que vieram desses canais viraram <span class="gold-q">lead?</span></div>
+        </div>
+      </div><!-- /dobra2-right -->
+
+    </div>
+  </section>
+
+  <!-- ============ DOBRA 3 — ICEBERG REDESIGN ============ -->
+  <section class="dobra dobra3-iceberg" aria-labelledby="prob-title">
+
+    <!-- SVG linhas conectoras (absolutas na seção) -->
+    <svg class="dobra3-lines" viewBox="0 0 1200 520" preserveAspectRatio="none" aria-hidden="true">
+      <!-- Linha esquerda: sai um pouco abaixo do topo do card esquerdo, vai reto ao centro -->
+      <path class="d3line d3line--left"  d="M 295 120 L 580 320"/>
+      <!-- Linha direita: sai do topo do card direito, faz curva até o centro -->
+      <path class="d3line d3line--right" d="M 905 80 Q 800 180 620 320"/>
+    </svg>
+
+    <div class="wrap">
+
+      <!-- TOPO: texto da seção -->
+      <div class="dobra3-header reveal">
+        <span class="eyebrow">O problema</span>
+        <h2 id="prob-title">O problema não é falta de tráfego.<br><span class="gold">É falta de captura.</span></h2>
+        <p class="lead">Seu CRM só registra o que acontece depois da venda. Tudo o que acontece antes fica invisível.</p>
+      </div>
+
+      <!-- CARDS -->
+      <div class="dobra3-cards">
+
+        <!-- Card esquerdo: O que você vê -->
+        <div class="d3card d3card--left reveal">
+          <div class="d3card-head">
+            <div class="d3card-icon d3card-icon--green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+            <div class="d3card-title">O QUE<br><span class="d3green">VOCÊ VÊ</span></div>
+          </div>
+          <div class="d3card-rows">
+            <div class="d3row">
+              <span class="d3check">✓</span>
+              <span class="d3row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18"/><path d="M16 10a4 4 0 01-8 0"/></svg></span>
+              <div class="d3row-text"><strong>Venda realizada</strong><span>R$ 1.256,00</span></div>
+            </div>
+            <div class="d3row">
+              <span class="d3check">✓</span>
+              <span class="d3row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+              <div class="d3row-text"><strong>Cliente cadastrado</strong><span>João Silva</span></div>
+            </div>
+            <div class="d3row">
+              <span class="d3check">✓</span>
+              <span class="d3row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+              <div class="d3row-text"><strong>Receita registrada</strong><span>+ 1 venda</span></div>
+            </div>
+          </div>
+          <div class="d3card-footer d3footer--green">Isso é apenas a ponta<br>do iceberg.</div>
+        </div>
+
+        <!-- Card direito: O que você não vê -->
+        <div class="d3card d3card--right reveal" style="transition-delay:.12s">
+          <div class="d3card-head">
+            <div class="d3card-icon d3card-icon--red">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+            </div>
+            <div class="d3card-title">O QUE<br><span class="d3red">VOCÊ NÃO VÊ</span></div>
+          </div>
+          <div class="d3card-rows d3card-rows--compact">
+            <div class="d3row d3row--compact">
+              <span class="d3row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 4v4M9 20l-5-5 5-5M19 10v10H5"/></svg></span>
+              <span class="d3row-label">Passou pela vitrine</span>
+              <span class="d3not">Não identificado</span>
+            </div>
+            <div class="d3row d3row--compact">
+              <span class="d3row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3M21 21v-3M17 21h-1"/></svg></span>
+              <span class="d3row-label">Escaneou QR Code</span>
+              <span class="d3not">Não identificado</span>
+            </div>
+            <div class="d3row d3row--compact">
+              <span class="d3row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1.3" fill="currentColor" stroke="none"/></svg></span>
+              <span class="d3row-label">Veio do Instagram</span>
+              <span class="d3not">Não identificado</span>
+            </div>
+            <div class="d3row d3row--compact">
+              <span class="d3row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v3M9 18c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm12-5c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2z"/></svg></span>
+              <span class="d3row-label">Veio do TikTok</span>
+              <span class="d3not">Não identificado</span>
+            </div>
+            <div class="d3row d3row--compact">
+              <span class="d3row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l2.45-6h13.1L21 9M3 9h18M3 9v1a3 3 0 006 0 3 3 0 006 0 3 3 0 006 0V9M5 21V11M19 21V11M5 21h14M9 21v-6h6v6"/></svg></span>
+              <span class="d3row-label">Entrou na loja</span>
+              <span class="d3not">Não identificado</span>
+            </div>
+            <div class="d3row d3row--compact">
+              <span class="d3row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+              <span class="d3row-label">Voltou 3 vezes</span>
+              <span class="d3not">Não identificado</span>
+            </div>
+            <div class="d3row d3row--compact">
+              <span class="d3row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 001.95-1.57l1.65-8.43H6"/></svg></span>
+              <span class="d3row-label">Quase comprou</span>
+              <span class="d3not">Não identificado</span>
+            </div>
+            <div class="d3row d3row--compact">
+              <span class="d3row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></span>
+              <span class="d3row-label">Demonstrou interesse</span>
+              <span class="d3not">Não identificado</span>
+            </div>
+          </div>
+          <div class="d3card-footer d3footer--red">Sinais reais. Pessoas reais.<br>Oportunidades perdidas.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DOBRA 4 — COMO FUNCIONA (CARD SLIDER) ============ -->
+  <section id="how" aria-labelledby="how-title">
+      <div class="how-grid">
+
+        <!-- ESQUERDA: texto grande + navegação -->
+        <div class="how-left">
+          <span class="eyebrow">Como funciona</span>
+          <h2 id="how-title" class="how-heading">
+            Cada sinal<br>se torna<br>um <span class="gold">lead.</span>
+          </h2>
+          <div class="how-nav">
+            <button class="how-nav-btn how-prev" aria-label="Passo anterior">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+            </button>
+            <button class="how-nav-btn how-next" aria-label="Próximo passo">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+          <div class="how-counter">
+            <span class="how-count-cur">01</span>
+            <span class="how-count-sep"> / </span>
+            <span class="how-count-tot">05</span>
+          </div>
+        </div>
+
+        <!-- DIREITA: viewport dos cards -->
+        <div class="how-cards-vp">
+          <div class="how-cards-track">
+
+            <div class="how-card active">
+              <img src="assets/step_01.png" alt="Visitante passando pela vitrine">
+            </div>
+
+            <div class="how-card">
+              <img src="assets/step_02.png" alt="QR Code na vitrine">
+            </div>
+
+            <div class="how-card">
+              <img src="assets/step_03.png" alt="Instagram da loja">
+            </div>
+
+            <div class="how-card">
+              <img src="assets/step_04.png" alt="Visitante na loja física">
+            </div>
+
+            <div class="how-card how-card--gold">
+              <img src="assets/step_05.png" alt="Lead capturado no CRM">
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+  </section>
+
+  <!-- ============ DOBRA 5 — LINHA DO TEMPO COMPARATIVA ============ -->
+  <section class="dobra" aria-labelledby="tl-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="tl-title" class="reveal">Enquanto outros CRMs esperam a venda,<br>o CRMiner começa antes.</h2>
+      </div>
+
+      <div class="timeline-scroll reveal">
+        <svg viewBox="0 0 1000 300" role="img" aria-label="Linha do tempo: o CRM tradicional cobre apenas Compra e Cliente; o CRMiner cobre desde o Interesse.">
+          <!-- ===== CRM Tradicional — faixa cinza acima, só Compra e Cliente ===== -->
+          <text x="652" y="60" fill="#B6BAC6" font-size="17" font-weight="700" letter-spacing="1.5" font-family="Plus Jakarta Sans">CRM TRADICIONAL</text>
+          <text x="652" y="84" fill="#6b7280" font-size="14" font-weight="600" font-family="Plus Jakarta Sans">só registra depois da venda</text>
+          <line x1="652" y1="104" x2="908" y2="104" stroke="#2A2F38" stroke-width="6" stroke-linecap="round"/>
+          <line x1="740" y1="104" x2="740" y2="152" stroke="#2A2F38" stroke-width="1.5" stroke-dasharray="3 5"/>
+          <line x1="900" y1="104" x2="900" y2="152" stroke="#2A2F38" stroke-width="1.5" stroke-dasharray="3 5"/>
+
+          <!-- ===== baseline + CRMiner gold track (cobre tudo) ===== -->
+          <line x1="100" y1="168" x2="900" y2="168" stroke="#1f242b" stroke-width="2"/>
+          <line x1="100" y1="168" x2="900" y2="168" stroke="#FFC800" stroke-width="6" stroke-linecap="round"/>
+
+          <!-- pontos: Interesse 100 / Visita 260 / Engajamento 420 / Intenção 580 / Compra 740 / Cliente 900 -->
+          <g font-family="Plus Jakarta Sans" font-size="19" font-weight="600">
+            <circle cx="100" cy="168" r="9" fill="#FFC800"/><text x="100" y="210" fill="#F8F9FA" text-anchor="middle">Interesse</text>
+            <circle cx="260" cy="168" r="9" fill="#FFC800"/><text x="260" y="210" fill="#F8F9FA" text-anchor="middle">Visita</text>
+            <circle cx="420" cy="168" r="9" fill="#FFC800"/><text x="420" y="210" fill="#F8F9FA" text-anchor="middle">Engajamento</text>
+            <circle cx="580" cy="168" r="9" fill="#FFC800"/><text x="580" y="210" fill="#F8F9FA" text-anchor="middle">Intenção</text>
+            <circle cx="740" cy="168" r="11" fill="#FFC800" stroke="#121417" stroke-width="3"/><text x="740" y="210" fill="#F8F9FA" text-anchor="middle">Compra</text>
+            <circle cx="900" cy="168" r="11" fill="#FFC800" stroke="#121417" stroke-width="3"/><text x="900" y="210" fill="#F8F9FA" text-anchor="middle">Cliente</text>
+          </g>
+
+          <!-- CRMiner label abaixo -->
+          <text x="100" y="262" fill="#FFC800" font-size="17" font-weight="700" letter-spacing="1.5" font-family="Plus Jakarta Sans">CRMINER</text>
+          <text x="218" y="262" fill="#B6BAC6" font-size="15" font-weight="600" font-family="Plus Jakarta Sans">— captura desde o primeiro sinal</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DOBRA 6 — IMPACTO FINANCEIRO ============ -->
+  <section class="dobra" aria-labelledby="imp-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="imp-title" class="reveal">Quanto vale um visitante perdido?</h2>
+      </div>
+
+      <div class="impact-flow reveal">
+        <div class="step-pill"><b>200</b><span>visitantes</span></div>
+        <div class="arrow">→</div>
+        <div class="step-pill"><b>20</b><span>demonstraram interesse</span></div>
+        <div class="arrow">→</div>
+        <div class="step-pill"><b>3</b><span>compraram</span></div>
+      </div>
+
+      <div class="compare">
+        <div class="cmp dim reveal">
+          <div class="cmp-kicker">CRM Tradicional</div>
+          <div class="cmp-main">3 clientes registrados.</div>
+          <div class="cmp-extra">
+            <div class="t muted">As outras 17 intenções de compra desaparecem sem deixar rastro.</div>
+          </div>
+        </div>
+        <div class="cmp hi reveal" style="transition-delay:.1s">
+          <div class="cmp-kicker">CRMiner</div>
+          <div class="cmp-main">3 clientes registrados <span class="muted">+</span> oportunidades futuras identificadas.</div>
+          <div class="cmp-extra">
+            <div class="n">17</div>
+            <div class="t">oportunidades futuras identificadas e prontas para relacionamento.</div>
+          </div>
+        </div>
+      </div>
+
+      <p class="impact-close reveal">Você não precisa de mais visitantes.<br><span class="gold">Precisa desperdiçar menos intenção.</span></p>
+    </div>
+  </section>
+
+  <!-- ============ DOBRA 7 — CTA FINAL ============ -->
+  <section id="cta" aria-labelledby="cta-title">
+    <div class="wrap">
+      <div class="cta-box reveal">
+        <h2 id="cta-title">O próximo cliente da sua loja já passou por ela.</h2>
+        <p class="lead">A questão é: <strong style="color:var(--text);font-weight:700">Você conseguiu identificá-lo?</strong></p>
+        <div class="cta-actions">
+          <a class="btn btn-primary" href="#" aria-label="Começar gratuitamente com o CRMiner">Começar Gratuitamente</a>
+          <div class="micro">14 dias grátis <span class="sep">·</span> Sem cartão <span class="sep">·</span> Sem hardware</div>
+          <a class="btn-link" href="#" aria-label="Ver demonstração do CRMiner">
+            Ver demonstração
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="benefits">
+        <div class="benefit reveal">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <span>Configuração em minutos</span>
+        </div>
+        <div class="benefit reveal" style="transition-delay:.06s">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1.3" fill="currentColor" stroke="none"/></svg></div>
+          <span>Integração com Instagram</span>
+        </div>
+        <div class="benefit reveal" style="transition-delay:.12s">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3M21 21v-3M17 21h-1"/></svg></div>
+          <span>Integração com QR Codes</span>
+        </div>
+        <div class="benefit reveal" style="transition-delay:.18s">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="11" rx="2"/><path d="M8 21h8M12 14v7"/></svg></div>
+          <span>Sem hardware</span>
+        </div>
+        <div class="benefit reveal" style="transition-delay:.24s">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/><path d="M3 12h.01" opacity="0"/></svg></div>
+          <span>Sem fidelidade</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <p class="foot-quote reveal">O varejo aprendeu a medir vendas.<br>O próximo passo é <span class="gold">medir intenção.</span></p>
+    <div class="foot-bar">
+      <img src="assets/logo/logo_white.png" alt="CRMiner" />
+      <div class="foot-sign">Capturamos intenção. <span class="gold">Geramos resultado.</span></div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/hero.js" defer></script>
+
+</body>
+</html>

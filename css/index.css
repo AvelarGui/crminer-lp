@@ -1,0 +1,7 @@
+/* ============================================
+   MAIN CSS FILE — Importa Global e Responsive
+   ============================================ */
+
+@import url('./global.css');
+@import url('./hero.css');
+@import url('./responsive.css');
