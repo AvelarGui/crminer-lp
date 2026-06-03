@@ -917,6 +917,7 @@ header.scrolled {
 
 .dobra-white {
   background: #FFFFFF;
+  height: 100vh;
 }
 
 /* Textos principais */
@@ -1113,7 +1114,7 @@ header.scrolled {
 /* Esquerdo: topo, deslocado para o centro */
 .d3card--left {
   top: 80px;
-  left: 8%;
+  left: 0;
   transform: translateX(-70px);
   border: 1px solid rgba(74, 222, 128, 0.30);
 }
@@ -1121,7 +1122,7 @@ header.scrolled {
 /* Direito: fundo, deslocado para o centro */
 .d3card--right {
   bottom: 48px;
-  right: 8%;
+  right: 0;
   transform: translateX(70px);
   border: 1px solid rgba(248, 113, 113, 0.30);
 }
@@ -1284,7 +1285,7 @@ header.scrolled {
   justify-content: center;
   opacity: 0; /* começa invisível — JS anima */
   will-change: opacity;
-  padding-top: 100px; /* 72px nav + 88px para descer o conteúdo */
+  padding-top: 115px; /* 72px nav + 88px para descer o conteúdo */
 }
 
 .tl-scene-inner {
@@ -1298,12 +1299,30 @@ header.scrolled {
 /* ── Badge: CRM Tradicional (canto superior direito do wrapper) ── */
 .tl-crm-badge {
   position: absolute;
-  top: -52px;
-  right: 24px;
+  top: 17%;
+  left: 20%;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   gap: 2px;
+}
+
+.tl-crm-badge-crminer {
+  position: absolute;
+  bottom: 6%;
+  left: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+
+  span {
+  font-size: 0.70rem;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: rgba(182, 186, 198, 0.50);
+}
 }
 
 .tl-crm-badge span {
@@ -1350,10 +1369,21 @@ header.scrolled {
 /* ── Linha d'água ── */
 .tl-waterline {
   position: absolute;
-  bottom: 76%; /* alinhado com o dot Compra (data-i="4") */
+  bottom: 78%; /* alinhado com o dot Compra (data-i="4") */
   left: 50%;
-  transform: translateX(-50%);
-  width: 56vw;
+  transform: translateX(-100%);
+  width: 25vw;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.13);
+  pointer-events: none;
+}
+
+.tl-waterline-bottom {
+  position: absolute;
+  bottom: 6%; /* alinhado com o dot Compra (data-i="4") */
+  left: 50%;
+  transform: translateX(-100%);
+  width: 25vw;
   height: 1px;
   background: rgba(255, 255, 255, 0.13);
   pointer-events: none;
