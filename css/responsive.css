@@ -50,19 +50,42 @@
     display: none;
   }
 
+  /* Hero: esconder cards desktop no mobile */
+  .hero-cards { display: none; }
+
+  /* Hero: desfazer o layout que empurra conteúdo p/ esquerda */
+  .hero-content.anim-active {
+    padding-left: 5vw;
+    padding-right: 5vw;
+    align-items: center;
+    text-align: center;
+  }
+  .hero-content.anim-active .hero-actions { justify-content: center; }
+  .hero-content.anim-active .hc-lead      { margin-left: auto; }
+
+  /* Dobra 3: esconder card direito (evita sobreposição em telas estreitas) */
+  .d3card--right { display: none; }
+  /* Centralizar card esquerdo: left 11% + width 75% = centro exato */
+  .d3card--left  { left: 11%; }
+
   /* Como Funciona: grid empilhado */
   .how-grid {
     grid-template-columns: 1fr;
     gap: 40px;
+    padding: 0 1.5rem;
   }
 
+  /* Manter position relative para o z-index:2 funcionar */
   .how-left {
-    position: static;
+    position: relative;
   }
 
-  .how-card {
-    flex: 0 0 88%;
-  }
+  /* Reduzir altura mínima do carrossel */
+  .how-cards-vp   { min-height: 360px; }
+  .how-cards-loop { min-height: 360px; }
+
+  /* Heading menor no mobile */
+  .how-heading { font-size: clamp(2.8rem, 7.5vw, 4rem); }
 
   /* Rede tablet: ícones menores */
   .net-node {
@@ -153,9 +176,16 @@
     width: 100%;
   }
 
+  /* Dobra 3 mobile: card único um pouco mais largo, centralizado */
+  .d3card       { width: 80%; padding: 16px 14px 12px; }
+  .d3card--left { left: 10%; }
+
   /* Como Funciona mobile */
-  .how-card { flex: 0 0 94%; }
-  .how-heading { font-size: clamp(2.2rem, 8vw, 3rem); }
+  .how-heading  { font-size: clamp(2.2rem, 8vw, 3rem); }
+  #how          { padding: 80px 0; }
+  .how-grid     { padding: 0 1rem; }
+  .how-cards-vp   { min-height: 300px; }
+  .how-cards-loop { min-height: 300px; }
 
   /* Rede mobile: labels somem, só ícone */
   .net-node__label {

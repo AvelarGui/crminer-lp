@@ -3,7 +3,7 @@
    (var lenis é global — hero.js também usa)
    ============================================================ */
 var lenis = new Lenis({ duration: 1.2, smoothTouch: false });
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, Draggable);
 gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
 gsap.ticker.lagSmoothing(0);
 lenis.on('scroll', ScrollTrigger.update);
@@ -113,45 +113,86 @@ setTimeout(function () {
   // ── Cena PERMANECE visível — finale aparece sobre ela ─────
   d3tl
     .fromTo('#d3-finale',
-      { opacity: 0 }, { opacity: 1, duration: 0.4 }, 10.6)
-
-  // ── Cards reaparecem menores nos cantos ────────────────────
-    .fromTo(['.d3card--left', '.d3card--right'],
-      { opacity: 0, scale: 0.68 },
-      { opacity: 1, scale: 0.68, duration: 0.4 }, 10.7);
+      { opacity: 0 }, { opacity: 1, duration: 0.4 }, 10.6);
 })();
 
 /* ============================================================
-   HOW IT WORKS — Card Slider com peek do próximo
+   HOW IT WORKS — 3-card deck (prev/ativo/next) com GSAP + Draggable
    ============================================================ */
 (function () {
   var section = document.getElementById('how');
   if (!section) return;
 
-  var track   = section.querySelector('.how-cards-track');
-  var cards   = Array.prototype.slice.call(section.querySelectorAll('.how-card'));
   var prevBtn = section.querySelector('.how-prev');
   var nextBtn = section.querySelector('.how-next');
   var curEl   = section.querySelector('.how-count-cur');
+  var vp      = section.querySelector('.how-cards-vp');
+  // Usa apenas os 5 cards únicos (primeiros 5 li)
+  var cards   = gsap.utils.toArray('.how-cards-loop li').slice(0, 5);
   var total   = cards.length;
   var current = 0;
+  var busy    = false;
 
-  function updateSlider() {
-    var cardW = cards[0].offsetWidth;
-    var gap   = 16;
-    track.style.transform = 'translateX(-' + (current * (cardW + gap)) + 'px)';
-    if (curEl) curEl.textContent = String(current + 1).padStart(2, '0');
-    cards.forEach(function (c, i) { c.classList.toggle('active', i === current); });
-    prevBtn.disabled = (current === 0);
-    nextBtn.disabled = (current === total - 1);
+  var isMobile     = window.innerWidth < 768;
+  var ACTIVE_SCALE = isMobile ? 1.3 : 2;
+  var PEEK_X       = isMobile ? 80  : 110;
+  var PEEK_SCALE   = 0.68;
+  var PEEK_OP      = 0.72;
+  var DUR         = 0.42;
+  var EASE        = 'power2.inOut';
+
+  // Estado inicial: todos invisíveis
+  gsap.set(cards, { opacity: 0, scale: 0, xPercent: 0, zIndex: 10 });
+
+  function render(idx, animate) {
+    var p = ((idx - 1) + total) % total;
+    var n = (idx + 1) % total;
+    var dur = animate ? DUR : 0;
+
+    // Esconde cards que não são prev/active/next
+    cards.forEach(function (c, i) {
+      if (i !== p && i !== idx && i !== n) {
+        gsap.to(c, { opacity: 0, scale: 0, duration: dur * 0.6, overwrite: true });
+      }
+    });
+
+    gsap.to(cards[p],   { xPercent: -PEEK_X, scale: PEEK_SCALE,  opacity: PEEK_OP, zIndex: 50,  duration: dur, ease: EASE, overwrite: true });
+    gsap.to(cards[idx], { xPercent: 0,        scale: ACTIVE_SCALE, opacity: 1,       zIndex: 100, duration: dur, ease: EASE, overwrite: true,
+                          onComplete: function () { busy = false; } });
+    gsap.to(cards[n],   { xPercent: PEEK_X,   scale: PEEK_SCALE,  opacity: PEEK_OP, zIndex: 50,  duration: dur, ease: EASE, overwrite: true });
+
+    if (curEl) curEl.textContent = String(idx + 1).padStart(2, '0');
+    current = idx;
   }
 
-  nextBtn.addEventListener('click', function () {
-    if (current < total - 1) { current++; updateSlider(); }
-  });
-  prevBtn.addEventListener('click', function () {
-    if (current > 0) { current--; updateSlider(); }
+  function go(dir) {
+    if (busy) return;
+    busy = true;
+    render(((current + dir) + total) % total, true);
+  }
+
+  // Render inicial sem animação
+  render(0, false);
+
+  nextBtn.addEventListener('click', function () { go(1); });
+  prevBtn.addEventListener('click', function () { go(-1); });
+
+  // Swipe via pointer events — não move o container, só detecta direção
+  var swipeStartX = 0;
+  var swipeActive = false;
+
+  vp.addEventListener('pointerdown', function (e) {
+    swipeStartX = e.clientX;
+    swipeActive = true;
+    vp.setPointerCapture(e.pointerId);
   });
 
-  updateSlider();
+  vp.addEventListener('pointerup', function (e) {
+    if (!swipeActive) return;
+    swipeActive = false;
+    var delta = e.clientX - swipeStartX;
+    if (Math.abs(delta) > 45) go(delta < 0 ? 1 : -1);
+  });
+
+  vp.addEventListener('pointercancel', function () { swipeActive = false; });
 })();

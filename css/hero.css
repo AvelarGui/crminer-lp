@@ -3,7 +3,7 @@
    ============================================ */
 
 #hero-scroll-driver {
-  height: calc(100vh + 500px);
+  height: calc(100vh + 5000px);
   position: relative;
 }
 
@@ -79,6 +79,12 @@
   text-align: center;
   padding: 100px 5vw 80px;
   transition: opacity 700ms ease, align-items 0ms;
+}
+
+/* Transição de padding somente na primeira scrollada */
+.hero-content.first-anim {
+  transition: padding-left 0.65s cubic-bezier(0.22, 0.61, 0.36, 1),
+              padding-right 0.65s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 /* Quando a animação dispara — tudo alinha à esquerda */
@@ -195,6 +201,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 18px;
+  transition: none;
   padding: 0 28px;
   background: rgba(10, 10, 14, 0.88);
   border: 1px solid rgba(255, 200, 0, 0.22);
@@ -203,7 +210,6 @@
   -webkit-backdrop-filter: blur(20px);
   opacity: 0;
   transform: translateX(50px);
-  transition: opacity 550ms ease, transform 650ms cubic-bezier(0.22, 0.61, 0.36, 1);
   will-change: opacity, transform;
 }
 

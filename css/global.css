@@ -1099,11 +1099,10 @@ header.scrolled {
 /* Card base — mais ao centro */
 .d3card {
   position: absolute;
-  width: 30%;
-  max-width: 320px;
+  width: 33%;
   background: rgba(10, 12, 16, 0.82);
   border-radius: 18px;
-  padding: 26px 24px 22px;
+  padding: 20px 20px 18px;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   pointer-events: auto;
@@ -1114,15 +1113,15 @@ header.scrolled {
 /* Esquerdo: topo, deslocado para o centro */
 .d3card--left {
   top: 80px;
-  left: 0;
+  left: 8%;
   transform: translateX(-70px);
   border: 1px solid rgba(74, 222, 128, 0.30);
 }
 
 /* Direito: fundo, deslocado para o centro */
 .d3card--right {
-  bottom: 48px;
-  right: 0;
+  bottom: 16px;
+  right: 8%;
   transform: translateX(70px);
   border: 1px solid rgba(248, 113, 113, 0.30);
 }
@@ -1166,7 +1165,7 @@ header.scrolled {
 .d3card-rows {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 7px;
 }
 
 .d3row {
@@ -1175,7 +1174,7 @@ header.scrolled {
   gap: 10px;
   background: rgba(255,255,255,0.04);
   border-radius: 10px;
-  padding: 10px 12px;
+  padding: 8px 10px;
 }
 
 .d3check {
@@ -1215,23 +1214,23 @@ header.scrolled {
 
 /* Itens compactos — card direito */
 .d3card-rows--compact {
-  gap: 6px;
+  gap: 10px;
 }
 
 .d3row--compact {
-  padding: 7px 10px;
-  gap: 8px;
+  padding: 10px 12px;
+  gap: 10px;
 }
 
 .d3row-label {
   flex: 1;
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   font-weight: 500;
   color: #F8F9FA;
 }
 
 .d3not {
-  font-size: 0.68rem;
+  font-size: 0.74rem;
   font-weight: 600;
   color: #f87171;
   white-space: nowrap;
@@ -1521,29 +1520,24 @@ header.scrolled {
 
 /* Cards menores no finale: controlado via JS inline styles (ver main.js startPhase2) */
 
-/* ---------- DOBRA 4 — JOURNEY SCROLL STORYTELLING ---------- */
+/* ---------- DOBRA 4 — COMO FUNCIONA (CARD LOOP) ---------- */
 #how {
-  padding: 0;
-}
-
-/* ---------- DOBRA 4 — COMO FUNCIONA (CARD SLIDER) ---------- */
-#how {
-  padding: 120px 2rem;   /* 100% width, 2rem padding lateral */
+  padding: 120px 0;
   overflow: hidden;
 }
 
 .how-grid {
   display: grid;
-  grid-template-columns: 1fr 1.3fr;  /* right maior — imagem mais larga */
-  column-gap: 6%;                    /* gap ajustável */
-  row-gap: 48px;
-  align-items: stretch;
+  grid-template-columns: 1fr 1.3fr;
+  column-gap: 6%;
+  padding: 0 4rem;
+  align-items: center;
   max-width: none;
 }
 
 .how-left {
-  position: sticky;
-  top: 80px;
+  position: relative;
+  z-index: 2;        /* fica acima do overflow dos cards da direita */
   display: flex;
   flex-direction: column;
   padding-bottom: 8px;
@@ -1565,7 +1559,7 @@ header.scrolled {
 .how-nav {
   display: flex;
   gap: 12px;
-  margin-top: auto;   /* empurra setas para o bottom */
+  margin-top: 32px;
 }
 
 .how-nav-btn {
@@ -1612,53 +1606,54 @@ header.scrolled {
 }
 
 .how-cards-vp {
-  overflow: hidden;
-  padding-left: 6px;     /* evita cortar border-radius esquerdo */
-}
-
-/* Flex-row: cards em fila, próximo card espreita à direita */
-.how-cards-track {
+  position: relative;
+  z-index: 1;        /* cria stacking context — cards filhos ficam contidos aqui */
   display: flex;
-  gap: 16px;
-  transition: transform 0.52s cubic-bezier(.22,.61,.36,1);
-  will-change: transform;
+  align-items: center;
+  justify-content: center;
+  min-height: 500px;
+  overflow: visible;
+  cursor: grab;
 }
 
-.how-card {
-  flex: 0 0 calc(100% - 130px);  /* peek do próximo card */
-  background: var(--card);
-  border-radius: 24px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  opacity: 0.45;
-  transform: scale(0.97);
-  transition: transform 0.45s cubic-bezier(.22,.61,.36,1),
-              opacity 0.45s cubic-bezier(.22,.61,.36,1),
-              border-color 0.3s, box-shadow 0.3s;
+.how-cards-vp:active {
+  cursor: grabbing;
 }
 
-.how-card.active {
-  opacity: 1;
-  transform: scale(1);
-  border-color: rgba(255, 228, 80, 0.25);
-  box-shadow: 0 0 40px -16px rgba(255, 228, 80, 0.15);
-}
-
-.how-card--gold.active {
-  border-color: rgba(255, 228, 80, 0.45);
-  box-shadow: 0 0 60px -16px rgba(255, 228, 80, 0.25);
-}
-
-.how-card img {
+.how-cards-loop {
+  position: relative;
+  list-style: none;
+  padding: 0;
+  margin: 0;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 500px;
 }
 
-.how-card__body {
-  padding: 24px 28px 28px;
+.how-cards-loop li {
+  position: absolute;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.how-cards-loop li img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-height: 65vh;
+  max-width: 100%;
+  border-radius: 1rem;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.45);
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
 }
 
 .how-card__step {
