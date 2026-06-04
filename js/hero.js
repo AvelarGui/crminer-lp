@@ -18,78 +18,57 @@
   var h1           = content.querySelector('h1');
   var lead         = content.querySelector('.hc-lead');
 
-  var SCROLL_END = 4500;
+  var SCROLL_END = 5000;
 
   /* ── Estado inicial ── */
   gsap.set(cards, { x: 50, opacity: 0 });
+  gsap.set(finLine1, { opacity: 0 });
+  gsap.set(finLine2, { opacity: 0, position: 'absolute' });
+  gsap.set(finScrollCta, { opacity: 0 });
 
-  // Desabilita transições CSS que conflitariam com o scrub
   h1.style.transition   = 'none';
   lead.style.transition = 'none';
 
-  /* ── Toggle do layout esquerdo (anim-active) ── */
-  var firstAnimDone = false;
+  /* ── Layout esquerdo ── */
   ScrollTrigger.create({
     trigger: driver,
     start: 'top+=8% top',
-    onEnter: function () {
-      if (!firstAnimDone) {
-        firstAnimDone = true;
-        content.classList.add('first-anim');
-        content.addEventListener('transitionend', function cleanup(e) {
-          if (e.propertyName === 'padding-left') {
-            content.classList.remove('first-anim');
-            content.removeEventListener('transitionend', cleanup);
-          }
-        });
-      }
-      content.classList.add('anim-active');
-    },
+    onEnter:     function () { content.classList.add('anim-active'); },
     onLeaveBack: function () { content.classList.remove('anim-active'); }
   });
 
-  /* ── Toggle do overlay do finale ── */
+  /* ── Finale overlay ── */
   ScrollTrigger.create({
     trigger: driver,
-    start: 'top+=' + Math.round(SCROLL_END * 0.58) + 'px top',
+    start: 'top+=' + Math.round(SCROLL_END * 0.60) + 'px top',
     onEnter:     function () { finaleEl.classList.add('visible'); },
     onLeaveBack: function () { finaleEl.classList.remove('visible'); }
   });
 
-  /* ── Switch linha 1 → linha 2 (posição no DOM) ── */
-  ScrollTrigger.create({
-    trigger: driver,
-    start: 'top+=' + Math.round(SCROLL_END * 0.76) + 'px top',
-    onEnter: function () {
-      finLine1.style.display   = 'none';
-      finLine2.style.position  = 'static';
-    },
-    onLeaveBack: function () {
-      finLine1.style.display   = '';
-      finLine2.style.position  = 'absolute';
-    }
-  });
 
   /* ── Timeline principal scrubada ── */
   var tl = gsap.timeline({
     scrollTrigger: {
       trigger: driver,
       start: 'top top',
-      end: '+=' + SCROLL_END,
-      scrub: 1.2
+      end:   '+=' + SCROLL_END,
+      scrub: 1.4
     }
   });
 
+  /* Phase 1 — conteúdo desloca para esquerda (desktop only) */
   tl
-    /* Phase 1 — content vai para esquerda, h1 e lead encolhem (desktop only) */
-    .fromTo(content, { x: 0 },
+    .fromTo(content,
+      { x: 0 },
       { x: isMobile ? 0 : '-5vw', ease: 'power2.out', duration: 3 }, 1.2)
-    .fromTo(h1, { scale: 1 },
+    .fromTo(h1,
+      { scale: 1 },
       { scale: isMobile ? 1 : 0.68, transformOrigin: 'left top', ease: 'power2.out', duration: 3 }, 1.2)
-    .fromTo(lead, { scale: 1 },
+    .fromTo(lead,
+      { scale: 1 },
       { scale: isMobile ? 1 : 0.85, transformOrigin: 'left top', ease: 'power2.out', duration: 3 }, 1.2);
 
-  /* Cards entram um por um da direita — apenas no desktop (no mobile estão hidden via CSS) */
+  /* Cards entram da direita (desktop only) */
   if (!isMobile) {
     tl
       .fromTo(cards[0], { x: 50, opacity: 0 }, { x: 0, opacity: 1, ease: 'power2.out', duration: 0.8 }, 1.5)
@@ -99,21 +78,20 @@
       .fromTo(cards[4], { x: 50, opacity: 0 }, { x: 0, opacity: 1, ease: 'power2.out', duration: 0.8 }, 3.5);
   }
 
+  /* Phase 2 — tudo some, finale entra */
   tl
-    /* Phase 2 — content some (cards só existem no desktop) */
-    .to(isMobile ? [content] : cards.concat([content]), { opacity: 0, ease: 'power2.in', duration: 0.6 }, 5.2)
+    .to(isMobile ? [content] : cards.concat([content]),
+      { opacity: 0, ease: 'power2.in', duration: 0.6 }, 5.2)
 
-    /* Finale — linha 1 aparece e some */
-    .fromTo(finLine1, { opacity: 0 }, { opacity: 1, ease: 'none', duration: 0.5 }, 5.8)
-    .to(finLine1,     { opacity: 0, ease: 'none', duration: 0.3 }, 6.8)
+    /* Linha 1 — aparece e fica visível por um bom trecho de scroll */
+    .fromTo(finLine1, { opacity: 0 }, { opacity: 1, ease: 'none', duration: 0.4 }, 5.8)
+    /* Linha 1 some — linha 2 começa EXATAMENTE quando linha 1 termina (sem gap, sem sobreposição) */
+    .to(finLine1,     { opacity: 0, ease: 'none', duration: 0.4 }, 7.4)
+    .fromTo(finLine2, { opacity: 0 }, { opacity: 1, ease: 'none', duration: 0.4 }, 7.8)
 
-    /* Finale — linha 2 aparece */
-    .fromTo(finLine2, { opacity: 0 }, { opacity: 1, ease: 'none', duration: 0.5 }, 7.2)
+    .fromTo(finScrollCta, { opacity: 0 }, { opacity: 1, ease: 'none', duration: 0.4 }, 8.6);
 
-    /* CTA aparece */
-    .fromTo(finScrollCta, { opacity: 0 }, { opacity: 1, ease: 'none', duration: 0.4 }, 7.8);
-
-  /* ── CTA → transição branca de tela inteira para Dobra 2 ── */
+  /* ── CTA → transição de página ── */
   if (finScrollCta) {
     var transEl   = document.getElementById('page-transition');
     var transPath = document.getElementById('pt-path');
@@ -138,11 +116,8 @@
         .to(transPath, { attr: { d: PT_WAVE }, ease: 'power2.in',  duration: 0.40 })
         .to(transPath, { attr: { d: PT_FILL }, ease: 'power2.out', duration: 0.30,
           onComplete: function () {
-            if (typeof lenis !== 'undefined') {
-              lenis.scrollTo(next, { immediate: true });
-            } else {
-              window.scrollTo(0, next.offsetTop);
-            }
+            if (typeof lenis !== 'undefined') lenis.scrollTo(next, { immediate: true });
+            else window.scrollTo(0, next.offsetTop);
           }
         })
         .to(transPath, { attr: { d: PT_WAVE }, ease: 'power2.in',  duration: 0.35, delay: 0.08 })

@@ -34,6 +34,19 @@ setTimeout(function () {
   document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
 }, 2500);
 
+/* ── Grades de pessoas — Dobra 6 ── */
+(function () {
+  document.querySelectorAll('.imp-persons').forEach(function (el) {
+    var total  = parseInt(el.dataset.total, 10) || 0;
+    var active = parseInt(el.dataset.active, 10) || 0;
+    for (var i = 0; i < total; i++) {
+      var p = document.createElement('span');
+      p.className = 'person-icon' + (i < active ? ' person-icon--active' : '');
+      el.appendChild(p);
+    }
+  });
+})();
+
 /* ============================================================
    DOBRA 3 — Timeline scroll-driven completa (GSAP scrub)
    ============================================================ */

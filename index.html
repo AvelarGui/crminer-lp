@@ -504,39 +504,122 @@
   </section>
 
   <!-- ============ DOBRA 6 — IMPACTO FINANCEIRO ============ -->
-  <section class="dobra" aria-labelledby="imp-title">
+  <section class="dobra dobra-impact" aria-labelledby="imp-title">
     <div class="wrap">
-      <div class="section-head">
-        <h2 id="imp-title" class="reveal">Quanto vale um visitante perdido?</h2>
+
+      <!-- Título + subtítulo -->
+      <div class="imp-head">
+        <h2 id="imp-title" class="reveal">Quanto vale um visitante <span class="gold">perdido?</span></h2>
+        <p class="lead reveal" style="transition-delay:.05s">
+          A maioria dos visitantes demonstra interesse.<br>
+          Mas <strong class="imp-highlight">quase ninguém</strong> deixa rastros.
+        </p>
       </div>
 
-      <div class="impact-flow reveal">
-        <div class="step-pill"><b>200</b><span>visitantes</span></div>
-        <div class="arrow">→</div>
-        <div class="step-pill"><b>20</b><span>demonstraram interesse</span></div>
-        <div class="arrow">→</div>
-        <div class="step-pill"><b>3</b><span>compraram</span></div>
+      <!-- Painéis de fluxo -->
+      <div class="imp-flow reveal" style="transition-delay:.1s">
+
+        <!-- Card + pessoas abaixo -->
+        <div class="imp-panel-group">
+          <div class="imp-panel">
+            <div class="imp-panel-stat">200</div>
+            <div class="imp-panel-label">visitantes</div>
+          </div>
+          <div class="imp-persons" data-total="48" data-active="0"></div>
+        </div>
+
+        <div class="imp-arrow">→</div>
+
+        <div class="imp-panel-group">
+          <div class="imp-panel">
+            <div class="imp-panel-stat">20</div>
+            <div class="imp-panel-label">demonstraram<br>interesse</div>
+          </div>
+          <div class="imp-persons" data-total="20" data-active="20"></div>
+        </div>
+
+        <div class="imp-arrow">→</div>
+
+        <div class="imp-panel-group">
+          <div class="imp-panel">
+            <div class="imp-panel-stat">3</div>
+            <div class="imp-panel-label">compraram</div>
+          </div>
+          <div class="imp-persons" data-total="3" data-active="3"></div>
+        </div>
+
+        <div class="imp-panel-group">
+          <div class="imp-panel imp-panel--lost">
+            <div class="imp-panel-question">E os outros</div>
+            <div class="imp-panel-stat imp-panel-stat--gold">17</div>
+            <div class="imp-panel-label">interessados?</div>
+          </div>
+          <div class="imp-persons imp-persons--glow" data-total="17" data-active="17"></div>
+          <p class="imp-lost-note">Não deixaram rastros.<br><span class="gold">Oportunidades perdidas.</span></p>
+        </div>
+
       </div>
 
-      <div class="compare">
-        <div class="cmp dim reveal">
-          <div class="cmp-kicker">CRM Tradicional</div>
-          <div class="cmp-main">3 clientes registrados.</div>
-          <div class="cmp-extra">
-            <div class="t muted">As outras 17 intenções de compra desaparecem sem deixar rastro.</div>
+      <!-- Cards de comparação -->
+      <div class="imp-compare reveal" style="transition-delay:.15s">
+
+        <!-- CRM Tradicional -->
+        <div class="imp-card imp-card--dim">
+          <div class="imp-card-kicker">CRM TRADICIONAL</div>
+          <p class="imp-card-main">3 clientes registrados.</p>
+          <p class="imp-card-desc">As outras 17 intenções de compra desaparecem sem deixar rastro.</p>
+          <div class="imp-gems">
+            <span class="gem gem--gold"></span>
+            <span class="gem gem--gold"></span>
+            <span class="gem gem--gold"></span>
+            <span class="gem gem--empty"></span>
+            <span class="gem gem--empty"></span>
+            <span class="gem gem--empty"></span>
+            <span class="gem gem--empty"></span>
+            <span class="gem gem--empty"></span>
+          </div>
+          <div class="imp-card-foot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+            Não vê o que não foi registrado.
           </div>
         </div>
-        <div class="cmp hi reveal" style="transition-delay:.1s">
-          <div class="cmp-kicker">CRMiner</div>
-          <div class="cmp-main">3 clientes registrados <span class="muted">+</span> oportunidades futuras identificadas.</div>
-          <div class="cmp-extra">
-            <div class="n">17</div>
-            <div class="t">oportunidades futuras identificadas e prontas para relacionamento.</div>
+
+        <!-- CRMiner -->
+        <div class="imp-card imp-card--hi">
+          <div class="imp-card-kicker">CRMINER</div>
+          <p class="imp-card-main">3 clientes registrados +<br><span class="gold">17</span> oportunidades futuras identificadas.</p>
+          <p class="imp-card-desc">Transformamos sinais em oportunidades reais.</p>
+          <div class="imp-channels">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-label="Vitrine"><path d="M3 9l2.45-6h13.1L21 9M3 9h18M3 9v1a3 3 0 006 0 3 3 0 006 0 3 3 0 006 0V9M5 21V11M19 21V11M5 21h14M9 21v-6h6v6"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-label="Instagram"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1.3" fill="currentColor" stroke="none"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-label="QR Code"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3M21 21v-3M17 21h-1"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-label="WhatsApp"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-label="TikTok"><path d="M9 18V5l12-2v3M9 18c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm12-5c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-label="Perfil"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-label="Carrinho"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 001.95-1.57l1.65-8.43H6"/></svg>
+          </div>
+          <div class="imp-gems imp-gems--20">
+            <span class="gem gem--gold"></span><span class="gem gem--gold"></span><span class="gem gem--gold"></span><span class="gem gem--gold"></span><span class="gem gem--gold"></span>
+            <span class="gem gem--gold"></span><span class="gem gem--gold"></span><span class="gem gem--gold"></span><span class="gem gem--gold"></span><span class="gem gem--gold"></span>
+            <span class="gem gem--gold"></span><span class="gem gem--gold"></span><span class="gem gem--gold"></span><span class="gem gem--gold"></span><span class="gem gem--gold"></span>
+            <span class="gem gem--gold"></span><span class="gem gem--gold"></span><span class="gem gem--gold"></span><span class="gem gem--gold"></span><span class="gem gem--gold"></span>
+          </div>
+          <div class="imp-card-foot imp-card-foot--gold">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            Vê o que os outros perdem.
           </div>
         </div>
+
+      </div><!-- /imp-compare -->
+
+      <!-- Fechamento -->
+      <div class="imp-close reveal" style="transition-delay:.2s">
+        <div class="imp-close-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+        </div>
+        <p>Não é sobre ter mais tráfego.<br><span class="gold">É sobre não perder oportunidades.</span></p>
       </div>
 
-      <p class="impact-close reveal">Você não precisa de mais visitantes.<br><span class="gold">Precisa desperdiçar menos intenção.</span></p>
     </div>
   </section>
 
