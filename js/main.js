@@ -34,6 +34,47 @@ setTimeout(function () {
   document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
 }, 2500);
 
+/* ── Benefits Dock — efeito macOS ── */
+(function () {
+  var dock = document.querySelector('.benefits');
+  if (!dock) return;
+
+  var items    = Array.from(dock.querySelectorAll('.benefit'));
+  var icEls    = items.map(function (b) { return b.querySelector('.ic'); });
+  var first    = items[0];
+  var min      = 60;   /* item width (48px ic + 12px padding) */
+  var max      = 100;  /* max scale height */
+  var bound    = min * Math.PI;
+
+  gsap.set(icEls, { transformOrigin: '50% 120%' });
+
+  dock.addEventListener('mousemove', function (e) {
+    var offset = dock.getBoundingClientRect().left + first.offsetLeft;
+    update(e.clientX - offset);
+  });
+
+  dock.addEventListener('mouseleave', function () {
+    gsap.to(items,  { duration: 0.3, x: 0, ease: 'power2.out' });
+    gsap.to(icEls,  { duration: 0.3, scale: 1, ease: 'power2.out' });
+  });
+
+  function update(pointer) {
+    items.forEach(function (item, i) {
+      var distance = (i * min + min / 2) - pointer;
+      var x = 0, scale = 1;
+      if (-bound < distance && distance < bound) {
+        var rad = distance / min * 0.5;
+        scale = 1 + (max / min - 1) * Math.cos(rad);
+        x     = 2 * (max - min) * Math.sin(rad);
+      } else {
+        x = (-bound < distance ? 2 : -2) * (max - min);
+      }
+      gsap.to(item,       { duration: 0.3, x: x,     ease: 'power2.out' });
+      gsap.to(icEls[i],   { duration: 0.3, scale: scale, ease: 'power2.out' });
+    });
+  }
+})();
+
 /* ── Grades de pessoas — Dobra 6 ── */
 (function () {
   document.querySelectorAll('.imp-persons').forEach(function (el) {

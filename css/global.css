@@ -14,6 +14,8 @@
   --cyan: #00E5FF;
   --text: #F8F9FA;
   --muted: #B6BAC6;
+  --ink: #0F1117;
+  --gold-on-light: #A07200;
   --maxw: 1160px;
   --ease: cubic-bezier(.22, .61, .36, 1);
 }
@@ -922,11 +924,11 @@ header.scrolled {
 
 /* Textos principais */
 .dobra-white h2 {
-  color: #0F1117;
+  color: var(--ink);
 }
 
 .dobra-white .lead {
-  color: #4D5566;
+  color: var(--ink);
 }
 
 /* Remove o halo dourado do section-head (não funciona em fundo claro) */
@@ -936,11 +938,11 @@ header.scrolled {
 
 /* "Quantos viraram lead?" */
 .dobra-white .signals-close .q {
-  color: #0F1117;
+  color: var(--ink);
 }
 
 .dobra-white .gold-q {
-  color: #B38000;
+  color: var(--gold-on-light);
 }
 
 /* Ícone de pessoa */
@@ -982,11 +984,11 @@ header.scrolled {
 }
 
 .dobra-white .net-node__label strong {
-  color: #0F1117;
+  color: var(--ink);
 }
 
 .dobra-white .net-node__label span {
-  color: #5A6170;
+  color: var(--ink);
 }
 
 /* Hub pulsante */
@@ -1697,6 +1699,68 @@ header.scrolled {
 }
 
 /* ---------- DOBRA 6 — IMPACTO (redesign) ---------- */
+.dobra-impact {
+  background-image: linear-gradient(rgba(255,255,255,0.88), rgba(255,255,255,0.88)), url('../assets/bg_white.jpg');
+  background-size: cover;
+  background-position: center;
+  color: var(--ink);
+}
+
+/* Tipografia */
+.dobra-impact h2,
+.dobra-impact p { color: var(--ink); }
+.dobra-impact .lead,
+.dobra-impact .imp-panel-label,
+.dobra-impact .imp-panel-question,
+.dobra-impact .imp-lost-note { color: var(--ink); }
+
+/* Gold em fundo claro: substituir amarelo por âmbar */
+.dobra-impact .gold {
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+  -webkit-text-fill-color: var(--gold-on-light);
+  color: var(--gold-on-light);
+}
+.dobra-impact .imp-highlight { color: var(--gold-on-light); }
+.dobra-impact .imp-panel-stat--gold { color: var(--gold-on-light); }
+.dobra-impact .imp-lost-note .gold { color: var(--gold-on-light); }
+
+/* Preserva gold nos cards (fundo escuro) */
+.dobra-impact .imp-card .gold {
+  background: linear-gradient(90deg, var(--gold) 0%, var(--gold-mid) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.dobra-impact .imp-card .imp-panel-stat--gold { color: var(--gold); }
+
+/* Painéis de fluxo */
+.dobra-impact .imp-panel {
+  background: #fff;
+  border-color: #D8DBE6;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+.dobra-impact .imp-panel--lost {
+  background: rgba(255,200,0,0.06);
+  border-color: rgba(180,130,0,0.3);
+}
+.dobra-impact .imp-panel-stat { color: var(--ink); }
+.dobra-impact .imp-arrow { color: #B0B5C4; }
+
+/* Ícones de pessoa inativos */
+.dobra-impact .person-icon { background: rgba(0,0,0,0.12); }
+
+/* Fechamento */
+.dobra-impact .imp-close {
+  background: rgba(255,255,255,0.7);
+  border-color: #D8DBE6;
+  color: var(--ink);
+}
+.dobra-impact .imp-close-icon {
+  background: rgba(255,200,0,0.12);
+}
+.dobra-impact .imp-close p { color: var(--ink); }
 
 .imp-head {
   text-align: center;
@@ -1823,19 +1887,28 @@ header.scrolled {
   margin: 0 auto;
 }
 .imp-card {
-  background: var(--card);
+  background: #0B0D0E;
   border: 1px solid var(--border);
   border-radius: 18px;
-  padding: 32px;
+  padding: 32px 0;
   display: flex;
   flex-direction: column;
   gap: 16px;
+  overflow: hidden;
+}
+
+.imp-card > *:not(.imp-card-image):not(.imp-visual) {
+  padding-left: 32px;
+  padding-right: 32px;
 }
 .imp-card--hi {
   border: 2px solid var(--gold);
   box-shadow: 0 0 0 1px rgba(255, 200, 0, 0.1), 0 24px 60px -28px rgba(255, 200, 0, 0.22);
 }
-.imp-card--dim { opacity: 0.78; }
+.imp-card--dim {
+  opacity: 0.78;
+  background: #0C0E12;
+}
 
 .imp-card-kicker {
   font-size: 0.72rem;
@@ -1857,6 +1930,17 @@ header.scrolled {
   color: var(--muted);
   line-height: 1.55;
   margin: 0;
+}
+
+.imp-card-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  position: relative;
+  box-shadow:
+    inset 0 0 20px rgba(11, 13, 14, 0.6),
+    inset 0 -15px 30px rgba(11, 13, 14, 0.8),
+    inset 0 15px 30px rgba(11, 13, 14, 0.5);
 }
 
 /* ── Gemas ── */
@@ -1888,20 +1972,60 @@ header.scrolled {
   height: 34px;
 }
 
-/* ── Canais ── */
-.imp-channels {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-  flex-wrap: wrap;
+/* ── Visual wrapper (imagem + canais sobrepostos) ── */
+.imp-visual {
+  position: relative;
+  width: 100%;
+  padding-top: 55px;
 }
-.imp-channels svg {
-  width: 20px;
-  height: 20px;
+
+/* ── Canais (absoluto sobre a imagem) ── */
+.imp-channels {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.imp-ch-item {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translateX(-110%);
+  pointer-events: auto;
+}
+
+.imp-ch-item svg {
+  width: 22px;
+  height: 22px;
   color: var(--gold);
-  opacity: 0.82;
+  background: rgba(11, 13, 14, 0.92);
+  border: 1px solid rgba(255, 200, 0, 0.55);
+  border-radius: 50%;
+  padding: 5px;
+  display: block;
+  position: relative;
+  z-index: 2;
   flex-shrink: 0;
 }
+
+.imp-ch-item::after {
+  content: '';
+  display: block;
+  width: 1px;
+  background: linear-gradient(to bottom, rgba(255, 200, 0, 0.55), rgba(255, 200, 0, 0.08));
+}
+
+/* Posições direita → esquerda sobre os nuggets da fileira superior */
+/* Imagem: 467×193px. Top row nuggets y≈128px (38%). imp-visual padding-top:55px */
+/* Ícone h≈36px. line = 128 - (top + 36) */
+.imp-ch-item:nth-child(1) { left: 94.6%; top: 70px;  } .imp-ch-item:nth-child(1)::after { height: 30px; }
+.imp-ch-item:nth-child(2) { left: 85.1%; top: 70px; } .imp-ch-item:nth-child(2)::after { height: 30px; }
+.imp-ch-item:nth-child(3) { left: 76.4%; top: 70px; } .imp-ch-item:nth-child(3)::after { height: 30px; }
+.imp-ch-item:nth-child(4) { left: 67.4%; top: 70px; } .imp-ch-item:nth-child(4)::after { height: 30px; }
+.imp-ch-item:nth-child(5) { left: 58.5%; top: 70px; } .imp-ch-item:nth-child(5)::after { height: 30px; }
+.imp-ch-item:nth-child(6) { left: 49.6%; top: 70px; } .imp-ch-item:nth-child(6)::after { height: 30px; }
+.imp-ch-item:nth-child(7) { left: 41.6%; top: 70px; } .imp-ch-item:nth-child(7)::after { height: 30px; }
 
 /* ── Footer dos cards ── */
 .imp-card-foot {
@@ -1963,6 +2087,37 @@ header.scrolled {
   padding: 128px 0;
 }
 
+.cta-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 64px;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto 64px;
+}
+
+.cta-img-wrap {
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.cta-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cta-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.cta-content h2 { text-align: left; }
+.cta-content .lead { text-align: left; margin: 0; }
+.cta-content .cta-actions { align-items: flex-start; }
+
 .cta-box {
   position: relative;
   text-align: center;
@@ -2009,49 +2164,71 @@ header.scrolled {
 }
 
 .benefits {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 14px;
-  max-width: 920px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 0;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  width: fit-content;
   margin: 56px auto 0;
+  height: 72px;
+  overflow: visible;
+  position: relative;
 }
 
 .benefit {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
-  text-align: center;
-  padding: 8px;
-  border-radius: 12px;
-  transition: transform 0.2s var(--ease);
-}
-
-.benefit:hover {
-  transform: translateY(-3px);
+  justify-content: flex-end;
+  padding: 0 6px;
+  cursor: default;
+  position: relative;
 }
 
 .benefit .ic {
-  width: 42px;
-  height: 42px;
-  border-radius: 11px;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
   background: var(--card);
   border: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--gold);
+  transform-origin: 50% 120%;
+  will-change: transform;
 }
 
 .benefit .ic svg {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
 }
 
 .benefit span {
-  font-size: 0.88rem;
-  color: var(--muted);
-  line-height: 1.3;
+  position: absolute;
+  bottom: calc(100% + 28px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(18, 20, 23, 0.95);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 7px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s;
+  z-index: 10;
+}
+
+.benefit:hover span {
+  opacity: 1;
 }
 
 /* ---------- FOOTER ---------- */
