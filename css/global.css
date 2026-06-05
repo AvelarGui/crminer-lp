@@ -15,7 +15,6 @@
   --text: #F8F9FA;
   --muted: #B6BAC6;
   --ink: #0F1117;
-  --gold-on-light: #A07200;
   --maxw: 1160px;
   --ease: cubic-bezier(.22, .61, .36, 1);
 }
@@ -688,7 +687,7 @@ header.scrolled {
 
 .net-line {
   fill: none;
-  stroke: #FFC800;
+  stroke: var(--gold);
   stroke-width: 1.5;
   stroke-linecap: round;
   opacity: 0.45;
@@ -696,8 +695,8 @@ header.scrolled {
 }
 
 .light-dot {
-  fill: #FFC800;
-  filter: drop-shadow(0 0 3px #FFC800) drop-shadow(0 0 7px rgba(255,200,0,.65));
+  fill: var(--gold);
+  filter: drop-shadow(0 0 3px var(--gold)) drop-shadow(0 0 7px rgba(255,200,0,.65));
 }
 
 /* Imagem central — recuada para que os nodos fiquem do lado de fora */
@@ -730,7 +729,7 @@ header.scrolled {
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  border: 2px solid rgba(255, 200, 0, 0.55);
+  border: 2px solid rgba(var(--gold-rgb), 0.55);
   background: transparent;
   z-index: 3;
   pointer-events: none;
@@ -738,8 +737,8 @@ header.scrolled {
 }
 
 @keyframes net-pulse {
-  0%, 100% { box-shadow: 0 0 20px rgba(255,200,0,.2), 0 0 50px rgba(255,200,0,.08); }
-  50%       { box-shadow: 0 0 36px rgba(255,200,0,.35), 0 0 70px rgba(255,200,0,.16); }
+  0%, 100% { box-shadow: 0 0 20px rgba(var(--gold-rgb),.2), 0 0 50px rgba(var(--gold-rgb),.08); }
+  50%       { box-shadow: 0 0 36px rgba(var(--gold-rgb),.35), 0 0 70px rgba(var(--gold-rgb),.16); }
 }
 
 /* O container do nodo = tamanho do ícone; o label flutua para fora via absolute */
@@ -760,7 +759,7 @@ header.scrolled {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #FFC800;
+  color: var(--gold);
   box-shadow: 0 0 14px rgba(255,200,0,.12);
   transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease), border-color 0.2s;
 }
@@ -841,7 +840,7 @@ header.scrolled {
 }
 
 .gold-q {
-  color: #FFC800;
+  color: var(--gold);
 }
 
 /* ── Ícone de pessoa acima do texto ── */
@@ -905,7 +904,7 @@ header.scrolled {
 .sig-ghost span {
   font-size: 2.2rem;
   font-weight: 900;
-  color: rgba(255, 200, 0, 0.90);
+  color: rgba(var(--gold-rgb), 0.90);
   letter-spacing: -0.04em;
   line-height: 1;
   position: relative;
@@ -918,16 +917,16 @@ header.scrolled {
    ═══════════════════════════════════════════════════════════ */
 
 .dobra-white {
-  background: #FFFFFF;
+  background: var(--text);
 }
 
 /* Textos principais */
 .dobra-white h2 {
-  color: var(--ink);
+  color: var(--border);
 }
 
 .dobra-white .lead {
-  color: var(--ink);
+  color: var(--border);
 }
 
 /* Remove o halo dourado do section-head (não funciona em fundo claro) */
@@ -937,11 +936,11 @@ header.scrolled {
 
 /* "Quantos viraram lead?" */
 .dobra-white .signals-close .q {
-  color: var(--ink);
+  color: var(--border);
 }
 
 .dobra-white .gold-q {
-  color: var(--gold-on-light);
+  color: var(--gold);
 }
 
 /* Ícone de pessoa */
@@ -983,11 +982,11 @@ header.scrolled {
 }
 
 .dobra-white .net-node__label strong {
-  color: var(--ink);
+  color: var(--border);
 }
 
 .dobra-white .net-node__label span {
-  color: var(--ink);
+  color: var(--border);
 }
 
 /* Hub pulsante */
@@ -1359,7 +1358,7 @@ header.scrolled {
   left: 0;
   right: 0;
   height: 0;
-  background: linear-gradient(to top, #FFC800 0%, rgba(255, 200, 0, 0.65) 100%);
+  background: linear-gradient(to top, var(--gold) 0%, rgba(255, 200, 0, 0.65) 100%);
   border-radius: 2px;
   box-shadow: 0 0 16px rgba(255, 200, 0, 0.45);
   will-change: height;
@@ -1461,7 +1460,7 @@ header.scrolled {
   font-weight: 700;
   letter-spacing: 0.07em;
   text-transform: uppercase;
-  color: rgba(255, 200, 0, 0.75);
+  color: var(--gold);
   margin-bottom: 5px;
 }
 
@@ -1471,7 +1470,7 @@ header.scrolled {
   line-height: 1.45;
 }
 
-.tl-label-gold { color: #FFC800 !important; }
+.tl-label-gold { color: var(--gold) !important; }
 
 /* ── Textos da Fase 2 — GSAP anima opacity + y diretamente ── */
 .d3-p2-text {
@@ -1702,16 +1701,16 @@ header.scrolled {
   background-image: linear-gradient(rgba(255,255,255,0.88), rgba(255,255,255,0.88)), url('../assets/bg_white.jpg');
   background-size: cover;
   background-position: center;
-  color: var(--ink);
+  color: var(--border);
 }
 
 /* Tipografia */
 .dobra-impact h2,
-.dobra-impact p { color: var(--ink); }
+.dobra-impact p { color: var(--border); }
 .dobra-impact .lead,
 .dobra-impact .imp-panel-label,
 .dobra-impact .imp-panel-question,
-.dobra-impact .imp-lost-note { color: var(--ink); }
+.dobra-impact .imp-lost-note { color: var(--border); }
 
 /* Gold em fundo claro: substituir amarelo por âmbar */
 .dobra-impact .gold {
@@ -1744,7 +1743,7 @@ header.scrolled {
   background: rgba(255,200,0,0.06);
   border-color: rgba(180,130,0,0.3);
 }
-.dobra-impact .imp-panel-stat { color: var(--ink); }
+.dobra-impact .imp-panel-stat { color: var(--border); }
 .dobra-impact .imp-arrow { color: #B0B5C4; }
 
 /* Ícones de pessoa inativos */
@@ -1754,12 +1753,12 @@ header.scrolled {
 .dobra-impact .imp-close {
   background: rgba(255,255,255,0.7);
   border-color: #D8DBE6;
-  color: var(--ink);
+  color: var(--border);
 }
 .dobra-impact .imp-close-icon {
-  background: rgba(255,200,0,0.12);
+  background: var(--gold);
 }
-.dobra-impact .imp-close p { color: var(--ink); }
+.dobra-impact .imp-close p { color: var(--border); }
 
 .imp-head {
   text-align: center;
