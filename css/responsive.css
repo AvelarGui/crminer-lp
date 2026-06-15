@@ -375,3 +375,20 @@
     height: 17px;
   }
 }
+
+/* ---------- PRICING responsivo ---------- */
+@media (max-width: 1024px) {
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+  }
+
+  /* Plano em destaque primeiro no mobile */
+  .price-card--featured {
+    order: -1;
+  }
+
+  #precos {
+    padding: 96px 0;
+  }
+}

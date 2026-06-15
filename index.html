@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="css/index.css" />
+<link rel="stylesheet" href="css/stories.css" />
 </head>
 <body>
 
@@ -474,6 +475,10 @@
           <h2 id="how-title" class="how-heading">
             Cada sinal<br>se torna<br>um <span class="gold">lead.</span>
           </h2>
+          <button type="button" class="btn btn-primary stories-trigger" data-stories-open aria-label="Ver como funciona em vídeo">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            Ver como funciona
+          </button>
         </div>
 
         <div class="how-list-wrap">
@@ -667,6 +672,76 @@
     </div>
   </section>
 
+  <!-- ============ DOBRA 6.5 — PREÇOS ============ -->
+  <section id="precos" aria-labelledby="precos-title">
+    <div class="wrap">
+
+      <div class="section-head">
+        <span class="eyebrow reveal">Planos e preços</span>
+        <h2 id="precos-title" class="reveal" style="transition-delay:.06s">Quanto custa parar de <span class="gold">perder clientes?</span></h2>
+        <p class="lead reveal" style="transition-delay:.12s">Comece grátis, sem cartão. Evolua quando os leads começarem a chegar.</p>
+      </div>
+
+      <div class="pricing-grid">
+
+        <!-- Grátis -->
+        <article class="price-card reveal" aria-label="Plano Grátis">
+          <div class="price-plan">Grátis</div>
+          <p class="price-tagline">Para provar que funciona</p>
+          <div class="price-value"><span class="price-currency">R$</span>0<span class="price-period">/mês</span></div>
+          <ul class="price-features" role="list">
+            <li>Landing page personalizada</li>
+            <li>1 QR Code rastreável</li>
+            <li>Até 50 leads por mês no CRM</li>
+            <li>Funil de vendas completo</li>
+            <li>Agenda de atendimentos</li>
+            <li>1 usuário</li>
+          </ul>
+          <a class="btn btn-ghost price-cta" href="https://app.crminer.com.br/signup" target="_blank" rel="noopener" aria-label="Criar conta grátis no crminer">Criar conta grátis</a>
+        </article>
+
+        <!-- Pro (destaque) -->
+        <article class="price-card price-card--featured reveal" style="transition-delay:.08s" aria-label="Plano Pro, o mais popular">
+          <div class="price-flag">Mais popular</div>
+          <div class="price-plan">Pro</div>
+          <p class="price-tagline">Para capturar sem limites</p>
+          <div class="price-value"><span class="price-currency">R$</span>97<span class="price-period">/mês</span></div>
+          <ul class="price-features" role="list">
+            <li><strong>Tudo do Grátis, e mais:</strong></li>
+            <li>Leads e QR Codes ilimitados</li>
+            <li>Widget de captura no seu site</li>
+            <li>Origem de cada lead (vitrine, Instagram, QR…)</li>
+            <li>Financeiro completo: a pagar e a receber</li>
+            <li>Catálogo de produtos, serviços e cupons</li>
+            <li>Até 5 usuários</li>
+          </ul>
+          <a class="btn btn-primary price-cta" href="https://app.crminer.com.br/signup" target="_blank" rel="noopener" aria-label="Testar o plano Pro grátis por 14 dias">Testar 14 dias grátis</a>
+        </article>
+
+        <!-- Business -->
+        <article class="price-card reveal" style="transition-delay:.16s" aria-label="Plano Business">
+          <div class="price-plan">Business</div>
+          <p class="price-tagline">Para vender no automático</p>
+          <div class="price-value"><span class="price-currency">R$</span>297<span class="price-period">/mês</span></div>
+          <ul class="price-features" role="list">
+            <li><strong>Tudo do Pro, e mais:</strong></li>
+            <li>WhatsApp integrado com resposta automática</li>
+            <li>IA copiloto: próxima ação sugerida por lead</li>
+            <li>Orçamentos e automações de venda</li>
+            <li>Funcionários, comissões e permissões</li>
+            <li>Usuários ilimitados</li>
+            <li>Suporte prioritário</li>
+          </ul>
+          <a class="btn btn-ghost price-cta" href="https://app.crminer.com.br/signup" target="_blank" rel="noopener" aria-label="Testar o plano Business grátis por 14 dias">Testar 14 dias grátis</a>
+        </article>
+
+      </div>
+
+      <p class="pricing-note reveal" style="transition-delay:.2s">14 dias grátis nos planos pagos <span class="sep">·</span> Sem cartão <span class="sep">·</span> Sem fidelidade — cancele quando quiser</p>
+
+    </div>
+  </section>
+
   <!-- ============ DOBRA 7 — CTA FINAL ============ -->
   <section id="cta" aria-labelledby="cta-title">
     <div class="wrap">
@@ -680,10 +755,14 @@
           <div class="cta-actions">
             <a class="btn btn-primary" href="https://app.crminer.com.br/signup" target="_blank" rel="noopener" aria-label="Começar gratuitamente com o crminer">Começar Gratuitamente</a>
             <div class="micro">14 dias grátis <span class="sep">·</span> Sem cartão <span class="sep">·</span> Sem hardware</div>
+            <!-- "Ver demonstração" oculto até termos uma demo real. Restaurar quando houver vídeo/demo. -->
+            <!--
             <a class="btn-link" href="#" aria-label="Ver demonstração do crminer">
               Ver demonstração
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </a>
+            -->
+
           </div>
         </div>
       </div>
@@ -734,6 +813,7 @@
 <!-- ── App ── -->
 <script src="js/main.js" defer></script>
 <script src="js/hero.js" defer></script>
+<script src="js/stories.js" defer></script>
 
 <!-- ── Widget crminer (formulário/contato) ── -->
 <script src="https://forms.crminer.com.br/embed.js" data-form="crminer" data-mode="bubble" data-position="bottom-right" data-color="#2A2F35" data-label="Fale conosco" async></script>
