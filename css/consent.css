@@ -1,0 +1,94 @@
+/* ============================================================
+   Banner de consentimento LGPD — tokens do Design System crminer
+   Grafite #121417 (palco) · Ouro #ffe450 (CTA) · Plus Jakarta Sans
+   ============================================================ */
+.crm-consent {
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  z-index: 10000;               /* acima do FAB de stories (9998) e do widget */
+  max-width: 560px;
+  margin-inline: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 18px;
+  padding: 16px 18px;
+  background: #121417;
+  color: #f2f3f5;
+  border: 1px solid rgba(255, 228, 80, .28);
+  border-radius: 14px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, .45);
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  /* estado inicial (escondido) para animar a entrada */
+  transform: translateY(18px);
+  opacity: 0;
+  transition: transform .3s cubic-bezier(.22, .61, .36, 1), opacity .3s ease;
+}
+
+.crm-consent.is-visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.crm-consent__text {
+  flex: 1 1 240px;
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #c9ccd2;
+}
+
+.crm-consent__text a {
+  color: #ffe450;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.crm-consent__actions {
+  display: flex;
+  gap: 10px;
+  flex: 0 0 auto;
+  margin-left: auto;
+}
+
+.crm-consent__btn {
+  font: inherit;
+  font-weight: 700;
+  font-size: 13.5px;
+  padding: 9px 18px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform .15s ease, background .15s ease, border-color .15s ease;
+}
+
+.crm-consent__btn:active { transform: scale(.96); }
+
+.crm-consent__btn--primary {
+  background: #ffe450;
+  color: #121417;
+}
+.crm-consent__btn--primary:hover { background: #ffec79; }
+
+.crm-consent__btn--ghost {
+  background: transparent;
+  color: #c9ccd2;
+  border-color: rgba(255, 255, 255, .22);
+}
+.crm-consent__btn--ghost:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, .4);
+}
+
+@media (max-width: 480px) {
+  .crm-consent { left: 12px; right: 12px; bottom: 12px; padding: 14px; }
+  .crm-consent__actions { width: 100%; }
+  .crm-consent__btn { flex: 1; text-align: center; }
+}
+
+/* Respeita quem prefere menos movimento */
+@media (prefers-reduced-motion: reduce) {
+  .crm-consent { transition: opacity .2s ease; transform: none; }
+}

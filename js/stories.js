@@ -197,6 +197,11 @@
 
   function open(i) {
     buildDOM();
+    // Registra a abertura real do player (visualização de vídeo), além do clique no CTA
+    var s = STORIES[i || 0];
+    if (typeof window.crmTrack === "function") {
+      window.crmTrack("video_play", { story_id: s.id, story_label: s.label });
+    }
     overlay.classList.add("is-open");
     overlay.setAttribute("aria-hidden", "false");
     document.body.classList.add("stories-lock");

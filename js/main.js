@@ -232,13 +232,43 @@ setTimeout(function () {
 })();
 
 /* ============================================================
-   TRACKING — cliques em CTA + profundidade de scroll (GA4)
-   Sem Measurement ID plugado, gtag não existe → vira no-op.
+   TRACKING — cliques em CTA + profundidade de scroll
+   Espelha cada evento em GA4 (gtag) E Microsoft Clarity.
+   Se uma das ferramentas não estiver carregada, vira no-op nela.
    ============================================================ */
 (function () {
   function track(name, params) {
+    params = params || {};
+    // GA4
     if (typeof window.gtag === 'function') window.gtag('event', name, params);
+    // Microsoft Clarity: evento custom (vira Smart Event) + tags filtráveis na gravação
+    if (typeof window.clarity === 'function') {
+      window.clarity('event', name);
+      Object.keys(params).forEach(function (k) {
+        window.clarity('set', k, String(params[k]));
+      });
+    }
   }
+
+  // Exposto para outros módulos (ex.: stories.js) reusarem o mesmo tracker
+  window.crmTrack = track;
+
+  /* ── Tags de origem/campanha: setadas uma vez no load ──
+     Permite segmentar gravações do Clarity e relatórios do GA4 por
+     "de onde veio quem converteu" (utm_source / medium / campaign). */
+  (function tagSource() {
+    var q = new URLSearchParams(location.search);
+    var tags = {
+      utm_source:   q.get('utm_source')   || 'direct',
+      utm_medium:   q.get('utm_medium')   || 'none',
+      utm_campaign: q.get('utm_campaign') || 'none',
+      landing_path: location.pathname
+    };
+    if (typeof window.clarity === 'function') {
+      Object.keys(tags).forEach(function (k) { window.clarity('set', k, tags[k]); });
+    }
+    if (typeof window.gtag === 'function') window.gtag('set', 'user_properties', tags);
+  })();
 
   /* ── Clique em qualquer [data-cta] ── */
   document.addEventListener('click', function (e) {
@@ -265,6 +295,8 @@ setTimeout(function () {
     // Clique de cadastro = lead em potencial (evento "recomendado" do GA4)
     if (type === 'signup') {
       track('generate_lead', { cta_location: loc, cta_label: label });
+      // Prioriza a gravação desse visitante de alto valor no Clarity
+      if (typeof window.clarity === 'function') window.clarity('upgrade', 'signup_intent');
       // Preparado para Meta Pixel no futuro (sem instalar agora)
       if (typeof window.fbq === 'function') window.fbq('track', 'Lead', { content_name: loc });
     }
