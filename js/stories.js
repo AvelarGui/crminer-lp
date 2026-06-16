@@ -9,12 +9,12 @@
   // ── Config: adicione os próximos vídeos aqui conforme renderizar ──
   var STORIES = [
     {
-      id: "crm",
-      src: "assets/stories/crm.mp4",
-      poster: "assets/stories/crm-poster.jpg",
-      label: "CRM · Funil de vendas",
+      id: "captura",
+      src: "assets/stories/CapturaReels.mp4",
+      poster: "", // sem poster próprio ainda — opcional: adicionar CapturaReels-poster.jpg
+      label: "Captura · Canais",
     },
-    // { id: "captura",   src: "assets/stories/captura.mp4",   poster: "assets/stories/captura-poster.jpg",   label: "Captura · Canais" },
+    // { id: "crm", src: "assets/stories/crm.mp4", poster: "assets/stories/crm-poster.jpg", label: "CRM · Funil de vendas" },
     // { id: "catalogo",  src: "assets/stories/catalogo.mp4",  poster: "assets/stories/catalogo-poster.jpg",  label: "Catálogo · Produtos" },
     // { id: "agenda",    src: "assets/stories/agenda.mp4",    poster: "assets/stories/agenda-poster.jpg",    label: "Agenda" },
     // { id: "financeiro",src: "assets/stories/financeiro.mp4",poster: "assets/stories/financeiro-poster.jpg",label: "Financeiro · Dashboard" },
@@ -22,10 +22,27 @@
 
   if (!STORIES.length) return;
 
-  var overlay, stage, video, progressWrap, bars, captionEl, idLabel;
+  var overlay, stage, video, progressWrap, bars, captionEl, idLabel, muteBtn;
   var current = 0;
   var raf = null;
   var built = false;
+  var muted = false; // abre com som (player é iniciado por clique → autoplay com áudio permitido)
+
+  var ICON_SOUND_ON =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a9 9 0 0 1 0 14"/></svg>';
+  var ICON_SOUND_OFF =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>';
+
+  function updateMuteIcon() {
+    if (muteBtn) muteBtn.innerHTML = muted ? ICON_SOUND_OFF : ICON_SOUND_ON;
+  }
+
+  function toggleMute(e) {
+    if (e) e.stopPropagation();
+    muted = !muted;
+    if (video) video.muted = muted;
+    updateMuteIcon();
+  }
 
   function buildDOM() {
     if (built) return;
@@ -68,18 +85,30 @@
     idLabel = document.createElement("span");
     idWrap.appendChild(logo);
     idWrap.appendChild(idLabel);
+    muteBtn = document.createElement("button");
+    muteBtn.className = "stories-mute";
+    muteBtn.setAttribute("aria-label", "Ativar ou desativar som");
+    muteBtn.addEventListener("click", toggleMute);
+    updateMuteIcon();
+
     var closeBtn = document.createElement("button");
     closeBtn.className = "stories-close";
     closeBtn.setAttribute("aria-label", "Fechar");
     closeBtn.innerHTML = "&times;";
     closeBtn.addEventListener("click", close);
+
+    var actions = document.createElement("div");
+    actions.className = "stories-actions";
+    actions.appendChild(muteBtn);
+    actions.appendChild(closeBtn);
+
     head.appendChild(idWrap);
-    head.appendChild(closeBtn);
+    head.appendChild(actions);
 
     // vídeo
     video = document.createElement("video");
     video.className = "stories-video";
-    video.muted = true;
+    video.muted = muted;
     video.setAttribute("playsinline", "");
     video.setAttribute("webkit-playsinline", "");
     video.preload = "auto";
@@ -136,9 +165,20 @@
     captionEl.textContent = s.label || "";
     video.poster = s.poster || "";
     video.src = s.src;
+    video.muted = muted;
     setBars();
     var p = video.play();
-    if (p && p.catch) p.catch(function () {});
+    if (p && p.catch)
+      p.catch(function () {
+        // Navegador bloqueou autoplay com som → toca mudo e atualiza o ícone
+        if (!muted) {
+          muted = true;
+          video.muted = true;
+          updateMuteIcon();
+          var p2 = video.play();
+          if (p2 && p2.catch) p2.catch(function () {});
+        }
+      });
   }
 
   function next() {

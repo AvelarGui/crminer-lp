@@ -237,6 +237,41 @@ h3 {
   height: 16px;
 }
 
+/* ---------- CTA INLINE (wrapper centralizado p/ CTAs no meio das seções) ---------- */
+.section-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 48px;
+}
+
+/* ---------- CTA BAND (faixa full-width entre seções) ---------- */
+.cta-band {
+  background: var(--bg);
+  text-align: center;
+  padding: 88px 0;
+}
+
+.cta-band-line {
+  font-size: clamp(1.4rem, 3vw, 2.1rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  max-width: 720px;
+  margin: 0 auto 32px;
+}
+
+.cta-band-micro {
+  margin-top: 18px;
+  font-size: 0.9rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.cta-band-micro .sep {
+  opacity: 0.4;
+  margin: 0 8px;
+}
+
 /* ---------- HEADER ---------- */
 header {
   position: fixed;
@@ -2288,6 +2323,86 @@ footer {
   font-weight: 700;
 }
 
+/* ── Marca (logo + assinatura) ── */
+.foot-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.foot-brand img {
+  height: 24px;
+  width: auto;
+}
+
+/* ── Redes sociais ── */
+.foot-social {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.foot-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid var(--border-bright);
+  color: var(--muted);
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease), transform 0.2s var(--ease);
+}
+
+.foot-social a:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+  transform: translateY(-2px);
+}
+
+.foot-social svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ── Links legais ── */
+.foot-legal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.foot-legal-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.foot-legal a {
+  color: var(--muted);
+  transition: color 0.2s var(--ease);
+}
+
+.foot-legal a:hover {
+  color: var(--text);
+}
+
+.foot-legal .sep {
+  opacity: 0.4;
+}
+
+.foot-legal .foot-copy {
+  opacity: 0.7;
+}
+
 /* ---------- REVEAL ANIMATION ---------- */
 .reveal {
   opacity: 0;
@@ -2481,6 +2596,29 @@ footer {
   width: 100%;
   justify-content: center;
   text-align: center;
+}
+
+/* ── Card único de trial (sem valores) ── */
+.trial-wrap {
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.trial-card {
+  text-align: center;
+  padding: 40px 36px 32px;
+}
+
+.trial-card .price-tagline {
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.price-features--2col {
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 28px;
+  text-align: left;
 }
 
 .pricing-note {

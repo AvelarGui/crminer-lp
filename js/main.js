@@ -231,4 +231,45 @@ setTimeout(function () {
   });
 })();
 
+/* ============================================================
+   TRACKING — cliques em CTA + profundidade de scroll (GA4)
+   Sem Measurement ID plugado, gtag não existe → vira no-op.
+   ============================================================ */
+(function () {
+  function track(name, params) {
+    if (typeof window.gtag === 'function') window.gtag('event', name, params);
+  }
+
+  /* ── Clique em qualquer [data-cta] ── */
+  document.addEventListener('click', function (e) {
+    var el = e.target.closest('[data-cta]');
+    if (!el) return;
+    track('cta_click', {
+      cta_location:    el.getAttribute('data-cta'),
+      cta_label:       (el.textContent || '').trim().replace(/\s+/g, ' '),
+      cta_destination: el.getAttribute('href') || ''
+    });
+    // Preparado para Meta Pixel no futuro (sem instalar agora)
+    if (typeof window.fbq === 'function') window.fbq('track', 'Lead', { content_name: el.getAttribute('data-cta') });
+  }, { passive: true });
+
+  /* ── Profundidade de scroll: 25 / 50 / 75 / 100% ── */
+  var marks = [25, 50, 75, 100];
+  var fired = new Set();
+  function onScrollDepth() {
+    var doc = document.documentElement;
+    var scrollable = doc.scrollHeight - window.innerHeight;
+    if (scrollable <= 0) return;
+    var pct = (window.scrollY / scrollable) * 100;
+    marks.forEach(function (m) {
+      if (pct >= m && !fired.has(m)) {
+        fired.add(m);
+        track('scroll_depth', { percent: m });
+      }
+    });
+    if (fired.size === marks.length) window.removeEventListener('scroll', onScrollDepth);
+  }
+  window.addEventListener('scroll', onScrollDepth, { passive: true });
+})();
+
 
