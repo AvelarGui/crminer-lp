@@ -32,11 +32,19 @@
   }
 
   function save(decision) {
+    stored = decision;
     try { localStorage.setItem(KEY, decision); } catch (e) {}
     apply(decision);
   }
 
-  // Visitante recorrente: reaplica a escolha e não mostra banner.
+  /* Link "Preferências de cookies" (rodapé) reabre o banner a qualquer momento —
+     o consentimento deve ser revogável tão facilmente quanto foi concedido (LGPD). */
+  window.crmConsent = { open: buildBanner, current: function () { return stored; } };
+  document.addEventListener("click", function (e) {
+    if (e.target.closest("[data-consent-open]")) { e.preventDefault(); buildBanner(); }
+  });
+
+  // Visitante recorrente: reaplica a escolha e não mostra o banner automaticamente.
   if (stored === "granted" || stored === "denied") {
     apply(stored);
     return;
@@ -47,19 +55,23 @@
 
   /* ── Banner ── */
   function buildBanner() {
+    if (document.querySelector(".crm-consent")) return; // evita banner duplicado
     var el = document.createElement("div");
     el.className = "crm-consent";
     el.setAttribute("role", "dialog");
     el.setAttribute("aria-live", "polite");
     el.setAttribute("aria-label", "Aviso de privacidade e cookies");
     el.innerHTML =
-      '<p class="crm-consent__text">' +
-        'Usamos cookies para entender como você usa o site e melhorá-lo. ' +
-        'Veja nossa <a href="privacidade.html">Política de Privacidade</a>.' +
-      '</p>' +
+      '<div class="crm-consent__body">' +
+        '<p class="crm-consent__title">Bora deixar sua visita melhor?</p>' +
+        '<p class="crm-consent__text">' +
+          'Com seu aceite, a gente entende como você usa o site e deixa tudo mais rápido e relevante pra você. ' +
+          'Você muda quando quiser. Veja a <a href="privacidade.html#cookies">Política de Privacidade</a>.' +
+        '</p>' +
+      '</div>' +
       '<div class="crm-consent__actions">' +
         '<button type="button" class="crm-consent__btn crm-consent__btn--ghost" data-consent="denied">Recusar</button>' +
-        '<button type="button" class="crm-consent__btn crm-consent__btn--primary" data-consent="granted">Aceitar</button>' +
+        '<button type="button" class="crm-consent__btn crm-consent__btn--primary" data-consent="granted">Aceitar cookies</button>' +
       '</div>';
 
     el.addEventListener("click", function (e) {

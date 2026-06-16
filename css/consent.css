@@ -6,20 +6,20 @@
   position: fixed;
   left: 16px;
   right: 16px;
-  bottom: 16px;
+  bottom: 22px;
   z-index: 10000;               /* acima do FAB de stories (9998) e do widget */
-  max-width: 560px;
+  max-width: 680px;
   margin-inline: auto;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 14px 18px;
-  padding: 16px 18px;
+  gap: 16px 28px;
+  padding: 24px 28px;
   background: #121417;
   color: #f2f3f5;
-  border: 1px solid rgba(255, 228, 80, .28);
-  border-radius: 14px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, .45);
+  border: 1px solid rgba(255, 228, 80, .38);
+  border-radius: 18px;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, .55), 0 0 0 1px rgba(255, 228, 80, .06);
   font-family: "Plus Jakarta Sans", system-ui, sans-serif;
   /* estado inicial (escondido) para animar a entrada */
   transform: translateY(18px);
@@ -32,11 +32,22 @@
   opacity: 1;
 }
 
+.crm-consent__body {
+  flex: 1 1 300px;
+}
+
+.crm-consent__title {
+  margin: 0 0 5px;
+  font-size: 16.5px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #fff;
+}
+
 .crm-consent__text {
-  flex: 1 1 240px;
   margin: 0;
-  font-size: 13.5px;
-  line-height: 1.5;
+  font-size: 14.5px;
+  line-height: 1.55;
   color: #c9ccd2;
 }
 
@@ -56,8 +67,8 @@
 .crm-consent__btn {
   font: inherit;
   font-weight: 700;
-  font-size: 13.5px;
-  padding: 9px 18px;
+  font-size: 14.5px;
+  padding: 12px 26px;
   border-radius: 999px;
   border: 1px solid transparent;
   cursor: pointer;
@@ -69,8 +80,9 @@
 .crm-consent__btn--primary {
   background: #ffe450;
   color: #121417;
+  box-shadow: 0 6px 18px rgba(255, 228, 80, .28);
 }
-.crm-consent__btn--primary:hover { background: #ffec79; }
+.crm-consent__btn--primary:hover { background: #ffec79; transform: translateY(-1px); }
 
 .crm-consent__btn--ghost {
   background: transparent;
@@ -92,3 +104,16 @@
 @media (prefers-reduced-motion: reduce) {
   .crm-consent { transition: opacity .2s ease; transform: none; }
 }
+
+/* Link "Preferências de cookies" no rodapé — aparência de link, reabre o banner.
+   Permite revogar/alterar o consentimento a qualquer momento (LGPD). */
+.foot-cookies {
+  font: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  color: var(--muted);
+  transition: color 0.2s var(--ease);
+}
+.foot-cookies:hover { color: var(--text); }
