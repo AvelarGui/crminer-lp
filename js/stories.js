@@ -11,7 +11,7 @@
     {
       id: "captura",
       src: "assets/stories/CapturaReels.mp4",
-      poster: "", // sem poster próprio ainda — opcional: adicionar CapturaReels-poster.jpg
+      poster: "assets/stories/CapturaReels-poster.jpg",
       label: "Captura · Canais",
     },
     // { id: "crm", src: "assets/stories/crm.mp4", poster: "assets/stories/crm-poster.jpg", label: "CRM · Funil de vendas" },
