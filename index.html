@@ -856,6 +856,16 @@
   .stories-fab:hover{ transform:scale(1.07); }
   .stories-fab:active{ transform:scale(.96); }
   @media (max-width:560px){ .stories-fab{ right:16px; bottom:86px; width:60px; height:60px; } }
+
+  /* ── Visibilidade dos botões flutuantes: FAB de stories + bubble "Bora conversar" ── */
+  /* Durante os stories (qualquer viewport): o overlay (z-index 1000) fica abaixo deles, então somem */
+  body.stories-lock .stories-fab,
+  body.stories-lock button[aria-label="Abrir formulário de contato"]{ display:none !important; }
+  /* No desktop, não aparecem sobre o hero — só depois dele */
+  @media (min-width:768px){
+    body.hero-in-view .stories-fab,
+    body.hero-in-view button[aria-label="Abrir formulário de contato"]{ display:none !important; }
+  }
 </style>
 
 <!-- ── Vendors: Lenis + GSAP ── -->

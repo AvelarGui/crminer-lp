@@ -321,4 +321,24 @@ setTimeout(function () {
   window.addEventListener('scroll', onScrollDepth, { passive: true });
 })();
 
+/* ============================================================
+   BOTÕES FLUTUANTES — visibilidade sobre o hero (FAB stories + bubble "Bora conversar")
+   Liga a classe .hero-in-view no body enquanto o hero está em tela.
+   O CSS esconde os dois botões: no desktop só some sobre o hero;
+   durante os stories somem em qualquer viewport (via body.stories-lock).
+   ============================================================ */
+(function () {
+  var hero = document.getElementById('hero-scroll-driver');
+  if (!hero) return;
+  function sync(active) { document.body.classList.toggle('hero-in-view', active); }
+  var st = ScrollTrigger.create({
+    trigger: hero,
+    start: 'top top',
+    end: 'bottom top',
+    onToggle:  function (self) { sync(self.isActive); },
+    onRefresh: function (self) { sync(self.isActive); }
+  });
+  sync(st.isActive);
+})();
+
 
