@@ -244,13 +244,30 @@ setTimeout(function () {
   document.addEventListener('click', function (e) {
     var el = e.target.closest('[data-cta]');
     if (!el) return;
+
+    var loc   = el.getAttribute('data-cta') || '';
+    var dest  = el.getAttribute('href') || '';
+    var label = (el.textContent || '').trim().replace(/\s+/g, ' ');
+
+    // Classifica o tipo de clique p/ separar conversão de vídeo/redes na análise
+    var type = 'other';
+    if (loc.indexOf('social-') === 0)      type = 'social';
+    else if (loc.indexOf('video') !== -1)  type = 'video';
+    else if (dest.indexOf('signup') !== -1) type = 'signup';
+
     track('cta_click', {
-      cta_location:    el.getAttribute('data-cta'),
-      cta_label:       (el.textContent || '').trim().replace(/\s+/g, ' '),
-      cta_destination: el.getAttribute('href') || ''
+      cta_location:    loc,
+      cta_label:       label,
+      cta_destination: dest,
+      cta_type:        type
     });
-    // Preparado para Meta Pixel no futuro (sem instalar agora)
-    if (typeof window.fbq === 'function') window.fbq('track', 'Lead', { content_name: el.getAttribute('data-cta') });
+
+    // Clique de cadastro = lead em potencial (evento "recomendado" do GA4)
+    if (type === 'signup') {
+      track('generate_lead', { cta_location: loc, cta_label: label });
+      // Preparado para Meta Pixel no futuro (sem instalar agora)
+      if (typeof window.fbq === 'function') window.fbq('track', 'Lead', { content_name: loc });
+    }
   }, { passive: true });
 
   /* ── Profundidade de scroll: 25 / 50 / 75 / 100% ── */
