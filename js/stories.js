@@ -14,10 +14,6 @@
       poster: "",
       label: window.crmT('storiesLabel', 'CRMiner · Demonstração'),
     },
-    // { id: "crm", src: "assets/stories/crm.mp4", poster: "assets/stories/crm-poster.jpg", label: "CRM · Funil de vendas" },
-    // { id: "catalogo",  src: "assets/stories/catalogo.mp4",  poster: "assets/stories/catalogo-poster.jpg",  label: "Catálogo · Produtos" },
-    // { id: "agenda",    src: "assets/stories/agenda.mp4",    poster: "assets/stories/agenda-poster.jpg",    label: "Agenda" },
-    // { id: "financeiro",src: "assets/stories/financeiro.mp4",poster: "assets/stories/financeiro-poster.jpg",label: "Financeiro · Dashboard" },
   ];
 
   if (!STORIES.length) return;

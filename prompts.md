@@ -27,7 +27,7 @@ Fotografia editorial realista de uma pessoa observando a vitrine de uma loja mod
 Uso na seção:
 
 ```html
-assets/how/step-01.png
+assets/how/step-01.webp
 ```
 
 ---
@@ -43,7 +43,7 @@ Fotografia editorial realista de um cliente escaneando um QR Code em uma loja f�
 Uso na seção:
 
 ```html
-assets/how/step-02.png
+assets/how/step-02.webp
 ```
 
 ---
@@ -59,7 +59,7 @@ Imagem editorial realista de um smartphone em primeiro plano mostrando uma inter
 Uso na seção:
 
 ```html
-assets/how/step-03.png
+assets/how/step-03.webp
 ```
 
 ---
@@ -75,7 +75,7 @@ Fotografia editorial realista de um vendedor ou consultor em uma loja moderna en
 Uso na seção:
 
 ```html
-assets/how/step-04.png
+assets/how/step-04.webp
 ```
 
 ---
@@ -91,7 +91,7 @@ Fotografia editorial realista representando relacionamento contínuo com cliente
 Uso na seção:
 
 ```html
-assets/how/step-05.png
+assets/how/step-05.webp
 ```
 
 ---

@@ -22,11 +22,23 @@ Landing Page crminer/
 ├── js/
 │   └── main.js               # JavaScript — sticky header e scroll reveal
 ├── assets/
-│   ├── logo/                 # Logos da marca
-│   │   ├── logo_white.png
-│   │   └── logo_icon.svg
-│   └── screenshots/          # Screenshots de referência
-├── uploads/                  # Logos alternativos (backup)
+│   ├── agentes/              # Retratos dos agentes de IA
+│   ├── cases/                # Fotos dos casos reais
+│   ├── clients/              # Logos dos clientes
+│   ├── contents/             # Capas e imagens de conteúdo
+│   ├── flags/                # Bandeiras do seletor de idioma
+│   ├── how/                  # Imagens da jornada comercial
+│   ├── icons/                # Ícones das páginas
+│   ├── intent/               # Imagens dos pontos de captura
+│   ├── linkminer-real/       # Exemplos de páginas publicadas
+│   ├── logo/                 # Marca e favicons
+│   ├── product/              # Capturas da interface do produto
+│   ├── stories/              # Vídeos e capas
+│   └── tutorial/             # Vídeos e imagens de tutoriais
+├── en/                       # Páginas geradas em inglês
+├── es/                       # Páginas geradas em espanhol
+├── locales/                  # Textos das traduções
+├── scripts/                  # Geração das versões traduzidas
 └── README.md                 # Este arquivo
 ```
 
@@ -82,9 +94,9 @@ Adicione novos scripts em `js/main.js` ou importe novos arquivos em `index.html`
 
 ## 📦 Assets
 
-- Logos estão em `assets/logo/`
-- Screenshots de referência em `assets/screenshots/`
-- Logos alternativos em `uploads/` (backup)
+- As páginas usam WebP para os ícones, retratos dos agentes, capturas do produto e imagens da jornada. As versões antigas sem uso foram removidas para reduzir o projeto.
+- Ao mover uma imagem usada nas páginas em português, atualize seu caminho nos HTMLs, CSS e JS e execute `python3 scripts/build-locales.py` para atualizar `/en/` e `/es/`.
+- As capas de artigos e a imagem de compartilhamento continuam em PNG para preservar os endereços públicos já usados nos metadados.
 
 ## ✨ Recursos
 
