@@ -11,6 +11,11 @@
       "permanent": true
     },
     {
+      "source": "/blog.html",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
       "source": "/termos.html",
       "destination": "/termos",
       "permanent": true
@@ -32,6 +37,16 @@
     }
   ],
   "rewrites": [
+    { "source": "/en", "destination": "/en/index.html" },
+    { "source": "/es", "destination": "/es/index.html" },
+    { "source": "/en/linkminer", "destination": "/en/linkminer.html" },
+    { "source": "/es/linkminer", "destination": "/es/linkminer.html" },
+    { "source": "/en/blog", "destination": "/en/blog.html" },
+    { "source": "/es/blog", "destination": "/es/blog.html" },
+    { "source": "/en/blog/artigo", "destination": "/en/blog-artigo.html" },
+    { "source": "/es/blog/artigo", "destination": "/es/blog-artigo.html" },
+    { "source": "/en/blog/whatsapp-business-api-cobranca-outubro-2026", "destination": "/en/blog/whatsapp-business-api-cobranca-outubro-2026.html" },
+    { "source": "/es/blog/whatsapp-business-api-cobranca-outubro-2026", "destination": "/es/blog/whatsapp-business-api-cobranca-outubro-2026.html" },
     {
       "source": "/linkminer",
       "destination": "/linkminer.html"
@@ -39,6 +54,18 @@
     {
       "source": "/precos",
       "destination": "/precos.html"
+    },
+    {
+      "source": "/blog",
+      "destination": "/blog.html"
+    },
+    {
+      "source": "/blog/artigo",
+      "destination": "/blog-artigo.html"
+    },
+    {
+      "source": "/blog/whatsapp-business-api-cobranca-outubro-2026",
+      "destination": "/blog/whatsapp-business-api-cobranca-outubro-2026.html"
     },
     {
       "source": "/termos",

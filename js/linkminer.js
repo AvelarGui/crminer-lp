@@ -1,10 +1,30 @@
 (function () {
   var header = document.getElementById('site-header');
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var lastY = window.scrollY || 0;
+  var anchorScrolling = false;
+  var anchorScrollTimer;
 
-  window.addEventListener('scroll', function () {
-    if (header) header.classList.toggle('scrolled', window.scrollY > 24);
-  }, { passive: true });
+  function onScroll() {
+    if (!header) return;
+    var currentY = window.scrollY || 0;
+    var delta = currentY - lastY;
+
+    header.classList.toggle('scrolled', currentY > 100);
+
+    if (anchorScrolling || header.classList.contains('menu-open') || header.querySelector('.locale-switch[open]')) {
+      header.classList.remove('nav-hidden');
+    } else if (currentY <= 80) {
+      header.classList.remove('nav-hidden');
+    } else if (Math.abs(delta) > 12) {
+      header.classList.toggle('nav-hidden', delta > 0);
+    }
+
+    lastY = currentY;
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 
   var menuToggle = document.querySelector('.nav-toggle');
   var mobileMenu = document.getElementById('mobile-menu');
@@ -12,9 +32,10 @@
   function setMenu(open) {
     if (!header || !menuToggle || !mobileMenu) return;
     header.classList.toggle('menu-open', open);
+    if (open) header.classList.remove('nav-hidden');
     document.body.classList.toggle('nav-open', open);
     menuToggle.setAttribute('aria-expanded', String(open));
-    menuToggle.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+    menuToggle.setAttribute('aria-label', open ? window.crmT('closeMenu', 'Fechar menu') : window.crmT('openMenu', 'Abrir menu'));
     mobileMenu.setAttribute('aria-hidden', String(!open));
   }
 
@@ -34,7 +55,7 @@
   });
 
   window.addEventListener('resize', function () {
-    if (window.innerWidth > 940) setMenu(false);
+    if (window.innerWidth > 1240) setMenu(false);
   }, { passive: true });
 
   document.querySelectorAll('[data-linkminer-showcase]').forEach(function (showcase) {
@@ -170,7 +191,11 @@
       event.preventDefault();
       if (target.tagName === 'DETAILS') target.open = true;
       setMenu(false);
+      anchorScrolling = true;
+      header.classList.remove('nav-hidden');
       target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+      window.clearTimeout(anchorScrollTimer);
+      anchorScrollTimer = window.setTimeout(function () { anchorScrolling = false; }, reduceMotion ? 0 : 1200);
       if (target.matches('input')) target.focus({ preventScroll: true });
     });
   });

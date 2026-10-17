@@ -3,45 +3,46 @@
    ============================================ */
 
 :root {
-  --bg: #FBFAF7;
-  --cream: #F7F5EF;
-  --cream-2: #EEE9DF;
+  --bg: #FFFFFF;
+  --cream: #FAFAFA;
+  --cream-2: #F4F4F5;
   --white: #FFFFFF;
   --card: #FFFFFF;
-  --border: #D8D2C7;
-  --border-bright: #C8BDA8;
-  --border-rgb: 216, 210, 199;
-  --gold:      #F9D000;
+  --border: #E4E4E7;
+  --border-bright: #D4D4D8;
+  --border-rgb: 228, 228, 231;
+  --gold:      #FFE450;
   --gold-mid:  #FFE450;
-  --gold-dark: #D8B900;
+  --gold-dark: #F9D000;
   --gold-soft: #FFF4B8;
   --gold-detail: #D8B900;
   --gold-bright: #FFE450;
-  --gold-rgb: 249, 208, 0;
+  --gold-rgb: 255, 228, 80;
   --gold-glow: rgba(249, 208, 0, 0.20);
-  --gold-on-light: #F9D000;
-  --cyan: #1E242B;
-  --text: #1E242B;
-  --muted: #68717A;
-  --ink: #121417;
-  --graphite: #1E242B;
-  --graphite-deep: #121417;
-  --graphite-rgb: 30, 36, 43;
-  --dark: #121417;
-  --dark-card: #1C2026;
-  --dark-border: #2A2F38;
+  --gold-on-light: #A68A00;
+  --gold-text-on-light: #A68A00;
+  --cyan: #2A2F35;
+  --text: #2A2F35;
+  --muted: #71717A;
+  --ink: #18181B;
+  --graphite: #2A2F35;
+  --graphite-deep: #18181B;
+  --graphite-rgb: 42, 47, 53;
+  --dark: #18181B;
+  --dark-card: #27272A;
+  --dark-border: #3F3F46;
   --dark-text: #F8F9FA;
   --dark-muted: #B6BAC6;
-  --dark-rgb: 18, 20, 23;
+  --dark-rgb: 24, 24, 27;
   --white-rgb: 255, 255, 255;
-  --shadow-rgb: 18, 20, 23;
+  --shadow-rgb: 24, 24, 27;
   --whatsapp: #25D366;
   --success: #5FB391;
   --success-rgb: 95, 179, 145;
   --danger: #FF3B30;
   --danger-rgb: 255, 59, 48;
   --info: #5B8DEF;
-  --surface-subtle-rgb: 250, 250, 247;
+  --surface-subtle-rgb: 250, 250, 250;
   --maxw: 1160px;
   --ease: cubic-bezier(.22, .61, .36, 1);
 }
@@ -62,7 +63,7 @@ html {
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   line-height: 1.6;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
@@ -604,15 +605,43 @@ header.nav-hidden {
 }
 
 .nav {
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   height: 72px;
+}
+
+.nav-main,
+.blog-header__main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-inline: auto;
+}
+
+.nav > .locale-switch,
+.blog-header__inner > .locale-switch {
+  position: absolute;
+  top: 50%;
+  right: clamp(18px, 3vw, 48px);
+  margin: 0;
+  transform: translateY(-50%);
+}
+
+/* O cabeçalho usa a largura da tela; as seções mantêm o limite de leitura. */
+.nav.wrap,
+.blog-header__inner.wrap {
+  width: 100%;
+  max-width: none;
+  padding-inline: clamp(18px, 3vw, 48px);
 }
 
 .brand {
   display: flex;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .brand img {
@@ -625,6 +654,74 @@ header.nav-hidden {
   align-items: center;
   gap: 8px;
 }
+
+.locale-switch {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.locale-switch summary {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  list-style: none;
+}
+
+.locale-switch summary::-webkit-details-marker { display: none; }
+.locale-switch summary:hover,
+.locale-switch[open] summary { opacity: .7; }
+.locale-switch summary:focus-visible,
+.locale-switch__menu a:focus-visible { outline: 2px solid var(--graphite-deep); outline-offset: 2px; }
+
+.locale-switch summary img {
+  display: block;
+  width: 19px;
+  height: 14px;
+  object-fit: cover;
+  border-radius: 1px;
+}
+
+.locale-switch__menu img {
+  display: block;
+  width: 22px;
+  height: 16px;
+  object-fit: cover;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(var(--graphite-rgb), .1);
+}
+
+.locale-switch__menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 110;
+  min-width: 188px;
+  padding: 5px;
+  border: 1px solid rgba(var(--graphite-rgb), .12);
+  border-radius: 12px;
+  background: var(--white);
+  box-shadow: 0 14px 36px rgba(var(--graphite-rgb), .14);
+}
+
+.locale-switch:not([open]) .locale-switch__menu { display: none; }
+.locale-switch__menu a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 40px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  color: var(--graphite-deep);
+  font-size: .82rem;
+  font-weight: 650;
+  white-space: nowrap;
+}
+.locale-switch__menu a:hover,
+.locale-switch__menu a[aria-current] { background: var(--cream); }
 
 .nav-cta .btn {
   padding: 10px 18px;
@@ -838,8 +935,12 @@ header.nav-hidden {
 }
 
 .how-eyebrow {
-  margin: 0 0 12px;
-  color: var(--gold-on-light);
+  display: table;
+  max-width: 100%;
+  margin: 0 0 12px -4px;
+  padding: 0 4px;
+  color: var(--graphite-deep);
+  background: linear-gradient(180deg, transparent 22%, var(--gold) 22%, var(--gold) 88%, transparent 88%);
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.08em;
@@ -1798,14 +1899,14 @@ header.scrolled {
   display: flex;
   align-items: center;
   gap: clamp(20px, 2.4vw, 34px);
-  margin-left: auto;
-  margin-right: clamp(18px, 2.8vw, 42px);
+  margin: 0;
 }
 
 .nav-links a {
   color: rgba(var(--graphite-rgb), 0.68);
   font-size: 0.84rem;
   font-weight: 700;
+  white-space: nowrap;
   transition: color 180ms var(--ease);
 }
 
@@ -2022,10 +2123,6 @@ header.scrolled {
   font-size: clamp(2.2rem, 4.6vw, 4.5rem);
   line-height: 0.98;
   letter-spacing: -0.045em;
-}
-
-#how .how-heading span {
-  color: var(--gold-on-light);
 }
 
 #how .how-subhead {
@@ -2291,6 +2388,18 @@ header.scrolled {
 
 #how .how-card-copy p {
   text-wrap: pretty;
+}
+
+#how .how-card-copy p.how-policy-note {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 0.76rem;
+  line-height: 1.45;
+}
+
+#how .how-card-copy p.how-policy-note a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 #how .how-tags {
@@ -2730,11 +2839,18 @@ header.scrolled {
    FINAL UX/UI POLISH — consistência visual e acabamento
    ============================================================ */
 :root {
-  --radius-sm: 10px;
-  --radius-md: 16px;
+  --section-space: clamp(72px, 8vw, 108px);
+  --radius-sm: 12px;
+  --radius-md: 18px;
   --radius-lg: 24px;
   --shadow-soft: 0 16px 44px rgba(var(--graphite-rgb), 0.07);
   --shadow-card: 0 24px 64px rgba(var(--graphite-rgb), 0.1);
+}
+
+#how,
+.receive-section,
+#na-pratica {
+  padding-block: var(--section-space);
 }
 
 :where(a, button, input, select, textarea):focus-visible {
@@ -3081,16 +3197,6 @@ header {
   box-shadow: var(--shadow-card);
 }
 
-.price-card--featured::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--gold-dark), var(--gold-mid), var(--gold-dark));
-}
-
 .price-flag {
   top: 16px;
   right: 18px;
@@ -3138,7 +3244,7 @@ header {
   margin-bottom: 0;
   padding: 18px clamp(18px, 3vw, 34px) 18px 18px;
   border: 1px solid rgba(var(--graphite-rgb), 0.1);
-  border-radius: 28px;
+  border-radius: var(--radius-lg);
   background: rgba(var(--white-rgb), 0.76);
   box-shadow: var(--shadow-card);
   backdrop-filter: blur(10px);
@@ -3244,7 +3350,7 @@ footer::before {
   }
 
   .cta-grid {
-    border-radius: 22px;
+    border-radius: var(--radius-lg);
   }
 
   .cta-content {
@@ -3319,7 +3425,7 @@ main {
     background:
       radial-gradient(ellipse at 100% 24%, rgba(var(--gold-rgb), 0.045), transparent 20%),
       radial-gradient(ellipse at 0% 62%, rgba(var(--graphite-rgb), 0.025), transparent 18%),
-      linear-gradient(180deg, var(--bg), rgba(247, 245, 239, 0.78) 52%, var(--bg));
+      linear-gradient(180deg, var(--bg), rgba(250, 250, 250, 0.78) 52%, var(--bg));
   }
 }
 

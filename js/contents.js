@@ -32,7 +32,7 @@
       imageLink.rel = 'noopener';
       imageLink.setAttribute('data-cta', 'content-' + item.id + '-image');
       var image = document.createElement('img');
-      image.src = item.image;
+      image.src = item.image.charAt(0) === '/' ? item.image : '/' + item.image;
       image.alt = item.imageAlt || '';
       image.loading = 'lazy';
       image.width = 900;
