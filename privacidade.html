@@ -32,12 +32,12 @@
 <meta name="twitter:image:alt" content="crminer — Transforme visitantes em oportunidades" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   :root { --gold:#ffe450; --gold-mid:#ffe36d; --ink:#1a1c1f; --muted:#5b6068; --line:#e6e8ec; --link:#9a7400; }
   html { -webkit-text-size-adjust: 100%; }
-  body { background:#fff; color:var(--ink); font-family:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif; line-height:1.62; }
+  body { background:#fff; color:var(--ink); font-family:'Inter',system-ui,-apple-system,sans-serif; line-height:1.62; }
   .legal-header { display:flex; justify-content:center; padding:34px 20px 4px; }
   .legal-header img { height:34px; width:auto; }
   .legal-wrap { max-width:720px; margin:0 auto; padding:22px 24px 64px; }
@@ -51,12 +51,13 @@
   a { color:var(--link); }
   strong { font-weight:700; }
   table { border-collapse:collapse; width:100%; margin:6px 0 16px; font-size:13.5px; }
+  .legal-table-scroll { max-width:100%; overflow-x:auto; overscroll-behavior-inline:contain; }
   th, td { border:1px solid var(--line); padding:8px 10px; text-align:left; vertical-align:top; }
   th { background:#faf7e8; font-weight:700; }
   .ph { background:#fff6cc; border-bottom:1px dashed #d4b106; padding:0 4px; border-radius:3px; font-style:normal; }
   .legal-footer { border-top:1px solid var(--line); margin-top:42px; padding-top:18px; color:var(--muted); font-size:13px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; }
   .legal-footer a { color:var(--muted); text-decoration:underline; }
-  @media (max-width:560px){ .legal-wrap{padding:18px 16px 48px;} h1{font-size:25px;} table{font-size:12.5px;} }
+  @media (max-width:560px){ .legal-wrap{padding:18px 16px 48px;} h1{font-size:25px;} table{min-width:600px; font-size:12.5px;} }
 </style>
 </head>
 <body>
@@ -101,6 +102,7 @@
     <p>O conjunto exato depende das funcionalidades ativadas pelo Lojista e das informações efetivamente disponibilizadas pelas APIs e permissões da Meta.</p>
 
     <h2>3. Finalidades e bases legais</h2>
+    <div class="legal-table-scroll" role="region" aria-label="Tabela de finalidades e bases legais" tabindex="0">
     <table>
       <thead><tr><th>Dado</th><th>Finalidade</th><th>Base legal (LGPD)</th></tr></thead>
       <tbody>
@@ -113,6 +115,7 @@
         <tr><td>Marketing do crminer ao Lojista</td><td>Novidades/ofertas</td><td>Consentimento (Art. 7º, I)</td></tr>
       </tbody>
     </table>
+    </div>
     <p>A Plataforma <strong>não é destinada à coleta de dados pessoais sensíveis</strong>. Como formulários e conversas podem conter texto livre, essas informações podem ser fornecidas incidentalmente. Lojistas e Consumidores devem evitar o envio de dados sensíveis, salvo quando houver finalidade, necessidade e base legal adequadas. Quando atuarmos como operadores, seguiremos as instruções lícitas da loja controladora.</p>
 
     <h2 id="cookies">4. Cookies e tecnologias</h2>

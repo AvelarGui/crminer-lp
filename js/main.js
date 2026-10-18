@@ -40,6 +40,15 @@ lenis.on('scroll', ScrollTrigger.update);
       event.preventDefault();
       if (header) header.classList.remove('nav-hidden');
       setCurrentMenu(hash);
+      if (window.location.hash !== hash) history.pushState(null, '', hash);
+
+      if (window.innerWidth <= 1240) {
+        window.crmAnchorScrolling = true;
+        lenis.scrollTo(target, { offset: getOffset(), immediate: true });
+        window.setTimeout(function () { window.crmAnchorScrolling = false; }, 300);
+        return;
+      }
+
       window.crmAnchorScrolling = true;
 
       var anchorScrollFallback = window.setTimeout(function () {
@@ -53,7 +62,6 @@ lenis.on('scroll', ScrollTrigger.update);
         onComplete: function () {
           window.clearTimeout(anchorScrollFallback);
           window.crmAnchorScrolling = false;
-          if (window.location.hash !== hash) history.pushState(null, '', hash);
         }
       });
     });
@@ -79,6 +87,42 @@ lenis.on('scroll', ScrollTrigger.update);
     end: 'bottom 52%',
     onEnter: function () { setCurrentMenu(''); },
     onEnterBack: function () { setCurrentMenu(''); }
+  });
+})();
+/* Navegação compacta: mantém as mesmas rotas acessíveis no celular. */
+(function () {
+  var header = document.getElementById('site-header');
+  var toggle = document.querySelector('.nav-menu-toggle');
+  var menu = document.getElementById('mobile-nav-menu');
+  if (!header || !toggle || !menu) return;
+
+  function closeMenu() {
+    menu.classList.remove('is-open');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', window.crmT('openMenu', 'Abrir menu'));
+  }
+
+  toggle.addEventListener('click', function () {
+    var willOpen = !menu.classList.contains('is-open');
+    menu.classList.toggle('is-open', willOpen);
+    toggle.setAttribute('aria-expanded', String(willOpen));
+    toggle.setAttribute('aria-label', willOpen ? window.crmT('closeMenu', 'Fechar menu') : window.crmT('openMenu', 'Abrir menu'));
+    header.classList.remove('nav-hidden');
+  });
+  menu.addEventListener('click', function (event) {
+    if (event.target.closest('a')) closeMenu();
+  });
+  document.addEventListener('click', function (event) {
+    if (!header.contains(event.target)) closeMenu();
+  });
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' && menu.classList.contains('is-open')) {
+      closeMenu();
+      toggle.focus();
+    }
+  });
+  window.addEventListener('resize', function () {
+    if (window.innerWidth > 1240) closeMenu();
   });
 })();
 /* ============================================================
@@ -111,16 +155,38 @@ lenis.on('scroll', ScrollTrigger.update);
     document.body.classList.toggle('widget-offer-open', open);
   }
 
-  function loadDemoForm(frame) {
+  function setDemoLoading(opener, loading) {
+    if (!opener) return;
+    if (loading) {
+      if (opener.dataset.demoOriginalMarkup) return;
+      opener.dataset.demoOriginalMarkup = opener.innerHTML;
+      opener.innerHTML = '<span role="status">' + window.crmT('openingForm', 'Abrindo formulário…') + '</span>';
+      opener.setAttribute('aria-label', window.crmT('openingDemo', 'Abrindo formulário de demonstração'));
+      opener.setAttribute('aria-busy', 'true');
+      opener.classList.add('is-loading');
+      return;
+    }
+    if (opener.dataset.demoOriginalMarkup) {
+      opener.innerHTML = opener.dataset.demoOriginalMarkup;
+      delete opener.dataset.demoOriginalMarkup;
+    }
+    opener.removeAttribute('aria-busy');
+    opener.classList.remove('is-loading');
+    opener.setAttribute('aria-label', opener.dataset.demoOriginalLabel || window.crmT('requestDemo', 'Solicitar uma demonstração do CRMiner'));
+  }
+
+  function loadDemoForm(frame, opener) {
     if (frame.src !== demoEmbedUrl) frame.src = demoEmbedUrl;
+    setDemoLoading(opener, false);
     openingWidget = false;
     setWidgetOpen(true);
   }
 
-  function openWidget() {
+  function openWidget(opener) {
     if (openingWidget) return;
 
     openingWidget = true;
+    setDemoLoading(opener, true);
     setWidgetOpen(true);
     var startedAt = performance.now();
 
@@ -132,7 +198,7 @@ lenis.on('scroll', ScrollTrigger.update);
 
       var frame = getWidgetFrame();
       if (frame && isWidgetOpen()) {
-        loadDemoForm(frame);
+        loadDemoForm(frame, opener);
         return;
       }
 
@@ -152,9 +218,10 @@ lenis.on('scroll', ScrollTrigger.update);
   openers.forEach(function (opener) {
     opener.removeAttribute('target');
     opener.removeAttribute('rel');
+    opener.dataset.demoOriginalLabel = opener.getAttribute('aria-label') || opener.textContent.trim();
     opener.addEventListener('click', function (event) {
       event.preventDefault();
-      openWidget();
+      openWidget(opener);
     });
   });
 
@@ -185,7 +252,7 @@ lenis.on('scroll', ScrollTrigger.update);
 
     header.classList.toggle('scrolled', currentY > 100);
 
-    if (window.crmAnchorScrolling) {
+    if (window.crmAnchorScrolling || header.querySelector('.nav-links.is-open')) {
       header.classList.remove('nav-hidden');
       lastY = currentY;
       return;
@@ -296,12 +363,12 @@ if (reduceMotion) {
 
     if (currentNumber) currentNumber.textContent = String(activeIndex + 1).padStart(2, '0');
     if (progressBar) progressBar.style.width = (((activeIndex + 1) / triggers.length) * 100) + '%';
-    if (positionText) positionText.textContent = 'Etapa ' + (activeIndex + 1) + ' de ' + triggers.length;
+    if (positionText) positionText.textContent = window.crmT('step', 'Etapa') + ' ' + (activeIndex + 1) + ' ' + window.crmT('of', 'de') + ' ' + triggers.length;
     if (prevButton) prevButton.disabled = activeIndex === 0;
     if (nextButton) {
       var isLast = activeIndex === triggers.length - 1;
-      nextButton.querySelector('span').textContent = isLast ? 'Voltar ao início' : 'Próxima etapa';
-      nextButton.setAttribute('aria-label', isLast ? 'Voltar para a primeira etapa' : 'Avançar para a próxima etapa');
+      nextButton.querySelector('span').textContent = isLast ? window.crmT('startOver', 'Voltar ao início') : window.crmT('nextStep', 'Próxima etapa');
+      nextButton.setAttribute('aria-label', isLast ? window.crmT('firstStep', 'Voltar para a primeira etapa') : window.crmT('advanceStep', 'Avançar para a próxima etapa'));
     }
 
     alignMobileTrigger(triggers[activeIndex], immediateScroll);
@@ -349,41 +416,6 @@ if (reduceMotion) {
     });
   }
 })();
-/* Centraliza suavemente a jornada quando o card entra na tela. */
-(function () {
-  var stage = document.querySelector('#how .how-stage');
-  var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  var centering = false;
-
-  if (!stage || reducedMotion.matches || typeof ScrollTrigger === 'undefined') return;
-
-  function centerStage() {
-    if (centering) return;
-
-    var viewportHeight = window.visualViewport ? window.visualViewport.height : window.innerHeight;
-    var stageHeight = stage.getBoundingClientRect().height;
-    var visibleTop = Math.max(12, (viewportHeight - stageHeight) / 2);
-
-    centering = true;
-    lenis.scrollTo(stage, {
-      offset: -visibleTop,
-      duration: 0.72,
-      easing: function (t) { return 1 - Math.pow(1 - t, 4); },
-      onComplete: function () {
-        centering = false;
-      }
-    });
-  }
-
-  ScrollTrigger.create({
-    trigger: stage,
-    start: 'top 82%',
-    end: 'bottom 18%',
-    onEnter: centerStage,
-    onEnterBack: centerStage
-  });
-})();
-
 /* ============================================================
    TRACKING — cliques em CTA + profundidade de scroll
    Espelha cada evento em GA4 (gtag) E Microsoft Clarity.

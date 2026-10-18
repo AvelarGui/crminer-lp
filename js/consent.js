@@ -57,21 +57,21 @@
   function buildBanner() {
     if (document.querySelector(".crm-consent")) return; // evita banner duplicado
     var el = document.createElement("div");
+    var t = window.crmT || function (_key, fallback) { return fallback; };
     el.className = "crm-consent";
     el.setAttribute("role", "dialog");
     el.setAttribute("aria-live", "polite");
-    el.setAttribute("aria-label", "Aviso de privacidade e cookies");
+    el.setAttribute("aria-label", t("cookieDialog", "Aviso de privacidade e cookies"));
     el.innerHTML =
       '<div class="crm-consent__body">' +
-        '<p class="crm-consent__title">Bora deixar sua visita melhor?</p>' +
+        '<p class="crm-consent__title">' + t("cookieTitle", "Cookies e privacidade") + '</p>' +
         '<p class="crm-consent__text">' +
-          'Com seu aceite, a gente entende como você usa o site e deixa tudo mais rápido e relevante pra você. ' +
-          'Você muda quando quiser. Veja a <a href="privacidade.html#cookies" target="_blank" rel="noopener">Política de Privacidade</a>.' +
+          t("cookieText", "Com sua permissão, usamos dados de navegação para entender o uso do site. Você pode mudar sua escolha depois.") + ' <a href="/privacidade#cookies" target="_blank" rel="noopener">' + t("privacyPolicy", "Política de Privacidade") + '</a>.' +
         '</p>' +
       '</div>' +
       '<div class="crm-consent__actions">' +
-        '<button type="button" class="crm-consent__btn crm-consent__btn--ghost" data-consent="denied">Recusar</button>' +
-        '<button type="button" class="crm-consent__btn crm-consent__btn--primary" data-consent="granted">Aceitar cookies</button>' +
+        '<button type="button" class="crm-consent__btn crm-consent__btn--ghost" data-consent="denied">' + t("decline", "Recusar") + '</button>' +
+        '<button type="button" class="crm-consent__btn crm-consent__btn--primary" data-consent="granted">' + t("accept", "Aceitar") + '</button>' +
       '</div>';
 
     el.addEventListener("click", function (e) {

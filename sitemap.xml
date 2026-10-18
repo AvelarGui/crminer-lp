@@ -1,10 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://crminer.com.br/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://crminer.com.br/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://crminer.com.br/en/" />
+    <xhtml:link rel="alternate" hreflang="es-419" href="https://crminer.com.br/es/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://crminer.com.br/" />
+  </url>
+  <url>
+    <loc>https://crminer.com.br/en/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://crminer.com.br/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://crminer.com.br/en/" />
+    <xhtml:link rel="alternate" hreflang="es-419" href="https://crminer.com.br/es/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://crminer.com.br/" />
+  </url>
+  <url>
+    <loc>https://crminer.com.br/es/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://crminer.com.br/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://crminer.com.br/en/" />
+    <xhtml:link rel="alternate" hreflang="es-419" href="https://crminer.com.br/es/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://crminer.com.br/" />
   </url>
   <url>
     <loc>https://crminer.com.br/linkminer</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://crminer.com.br/linkminer" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://crminer.com.br/en/linkminer" />
+    <xhtml:link rel="alternate" hreflang="es-419" href="https://crminer.com.br/es/linkminer" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://crminer.com.br/linkminer" />
+  </url>
+  <url>
+    <loc>https://crminer.com.br/en/linkminer</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://crminer.com.br/linkminer" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://crminer.com.br/en/linkminer" />
+    <xhtml:link rel="alternate" hreflang="es-419" href="https://crminer.com.br/es/linkminer" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://crminer.com.br/linkminer" />
+  </url>
+  <url>
+    <loc>https://crminer.com.br/es/linkminer</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://crminer.com.br/linkminer" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://crminer.com.br/en/linkminer" />
+    <xhtml:link rel="alternate" hreflang="es-419" href="https://crminer.com.br/es/linkminer" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://crminer.com.br/linkminer" />
+  </url>
+  <url>
+    <loc>https://crminer.com.br/blog</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://crminer.com.br/blog" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://crminer.com.br/en/blog" />
+    <xhtml:link rel="alternate" hreflang="es-419" href="https://crminer.com.br/es/blog" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://crminer.com.br/blog" />
+  </url>
+  <url>
+    <loc>https://crminer.com.br/en/blog</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://crminer.com.br/blog" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://crminer.com.br/en/blog" />
+    <xhtml:link rel="alternate" hreflang="es-419" href="https://crminer.com.br/es/blog" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://crminer.com.br/blog" />
+  </url>
+  <url>
+    <loc>https://crminer.com.br/es/blog</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://crminer.com.br/blog" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://crminer.com.br/en/blog" />
+    <xhtml:link rel="alternate" hreflang="es-419" href="https://crminer.com.br/es/blog" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://crminer.com.br/blog" />
+  </url>
+  <url>
+    <loc>https://crminer.com.br/blog/whatsapp-business-api-cobranca-outubro-2026</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://crminer.com.br/blog/whatsapp-business-api-cobranca-outubro-2026" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://crminer.com.br/en/blog/whatsapp-business-api-cobranca-outubro-2026" />
+    <xhtml:link rel="alternate" hreflang="es-419" href="https://crminer.com.br/es/blog/whatsapp-business-api-cobranca-outubro-2026" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://crminer.com.br/blog/whatsapp-business-api-cobranca-outubro-2026" />
+  </url>
+  <url>
+    <loc>https://crminer.com.br/en/blog/whatsapp-business-api-cobranca-outubro-2026</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://crminer.com.br/blog/whatsapp-business-api-cobranca-outubro-2026" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://crminer.com.br/en/blog/whatsapp-business-api-cobranca-outubro-2026" />
+    <xhtml:link rel="alternate" hreflang="es-419" href="https://crminer.com.br/es/blog/whatsapp-business-api-cobranca-outubro-2026" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://crminer.com.br/blog/whatsapp-business-api-cobranca-outubro-2026" />
+  </url>
+  <url>
+    <loc>https://crminer.com.br/es/blog/whatsapp-business-api-cobranca-outubro-2026</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://crminer.com.br/blog/whatsapp-business-api-cobranca-outubro-2026" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://crminer.com.br/en/blog/whatsapp-business-api-cobranca-outubro-2026" />
+    <xhtml:link rel="alternate" hreflang="es-419" href="https://crminer.com.br/es/blog/whatsapp-business-api-cobranca-outubro-2026" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://crminer.com.br/blog/whatsapp-business-api-cobranca-outubro-2026" />
   </url>
   <url>
     <loc>https://crminer.com.br/termos</loc>

@@ -2,6 +2,14 @@
 
 Landing page moderna e responsiva para CRMiner — solução de captura de leads antes da venda.
 
+## Idiomas do site público
+
+- Português é a versão padrão (`/`); inglês e espanhol latino-americano ficam em `/en/` e `/es/`.
+- Início, LinkMiner, blog e o artigo publicado têm versões próprias. Preços não estão publicados nesta etapa; documentos legais continuam em português e são identificados nos links traduzidos.
+- A cópia portuguesa é a fonte. As traduções estáticas ficam em `locales/en.json` e `locales/es.json`, com revisões editoriais em `locales/overrides.json`.
+- Ao mudar o texto português, confira as novas frases com `python3 scripts/build-locales.py --extract`, atualize os dicionários e gere novamente as páginas com `python3 scripts/build-locales.py`. O script interrompe a geração se faltar tradução.
+- Textos criados por JavaScript ficam em `js/i18n.js`; os cards editoriais localizados ficam em `js/contents-config.js` e `js/blog-posts.js`.
+
 ## 📁 Estrutura do Projeto
 
 ```
@@ -14,11 +22,23 @@ Landing Page crminer/
 ├── js/
 │   └── main.js               # JavaScript — sticky header e scroll reveal
 ├── assets/
-│   ├── logo/                 # Logos da marca
-│   │   ├── logo_white.png
-│   │   └── logo_icon.svg
-│   └── screenshots/          # Screenshots de referência
-├── uploads/                  # Logos alternativos (backup)
+│   ├── agentes/              # Retratos dos agentes de IA
+│   ├── cases/                # Fotos dos casos reais
+│   ├── clients/              # Logos dos clientes
+│   ├── contents/             # Capas e imagens de conteúdo
+│   ├── flags/                # Bandeiras do seletor de idioma
+│   ├── how/                  # Imagens da jornada comercial
+│   ├── icons/                # Ícones das páginas
+│   ├── intent/               # Imagens dos pontos de captura
+│   ├── linkminer-real/       # Exemplos de páginas publicadas
+│   ├── logo/                 # Marca e favicons
+│   ├── product/              # Capturas da interface do produto
+│   ├── stories/              # Vídeos e capas
+│   └── tutorial/             # Vídeos e imagens de tutoriais
+├── en/                       # Páginas geradas em inglês
+├── es/                       # Páginas geradas em espanhol
+├── locales/                  # Textos das traduções
+├── scripts/                  # Geração das versões traduzidas
 └── README.md                 # Este arquivo
 ```
 
@@ -26,14 +46,14 @@ Landing Page crminer/
 
 As cores estão definidas em variáveis CSS no `global.css`:
 
-- **--bg**: `#121417` — Fundo principal
-- **--card**: `#1C2026` — Fundo de cards
-- **--border**: `#2A2F38` — Bordas padrão
-- **--border-bright**: `#3A414D` — Bordas em hover
-- **--gold**: `#FFC800` — Cor primária (destaque)
-- **--cyan**: `#00E5FF` — Cor secundária (acentos)
-- **--text**: `#F8F9FA` — Texto principal
-- **--muted**: `#B6BAC6` — Texto secundário
+- **--bg**: `#FFFFFF` — Fundo principal
+- **--cream**: `#FAFAFA` — Superfície secundária neutra
+- **--card**: `#FFFFFF` — Fundo de cards
+- **--border**: `#E4E4E7` — Bordas padrão
+- **--gold**: `#FFE450` — Amarelo da marca e ações
+- **--gold-dark**: `#F9D000` — Segunda cor do gradiente de ação
+- **--text**: `#2A2F35` — Texto principal
+- **--muted**: `#71717A` — Texto secundário
 
 ## 📱 Breakpoints Responsivos
 
@@ -74,13 +94,13 @@ Adicione novos scripts em `js/main.js` ou importe novos arquivos em `index.html`
 
 ## 📦 Assets
 
-- Logos estão em `assets/logo/`
-- Screenshots de referência em `assets/screenshots/`
-- Logos alternativos em `uploads/` (backup)
+- As páginas usam WebP para os ícones, retratos dos agentes, capturas do produto e imagens da jornada. As versões antigas sem uso foram removidas para reduzir o projeto.
+- Ao mover uma imagem usada nas páginas em português, atualize seu caminho nos HTMLs, CSS e JS e execute `python3 scripts/build-locales.py` para atualizar `/en/` e `/es/`.
+- As capas de artigos e a imagem de compartilhamento continuam em PNG para preservar os endereços públicos já usados nos metadados.
 
 ## ✨ Recursos
 
-- Design moderno com tema escuro
+- Visual alinhado ao front do app: Inter, branco, cinzas neutros e amarelo da marca
 - Totalmente responsivo (mobile, tablet, desktop)
 - Animações suaves (reveal ao scroll, hero scene animado)
 - Otimizado para performance
@@ -88,7 +108,7 @@ Adicione novos scripts em `js/main.js` ou importe novos arquivos em `index.html`
 
 ## 🔗 Fontes
 
-- **Tipografia**: Plus Jakarta Sans (Google Fonts)
+- **Tipografia**: Inter (Google Fonts)
 - **Smooth Scroll**: CSS native `scroll-behavior`
 
 ---

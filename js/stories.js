@@ -10,14 +10,10 @@
   var STORIES = [
     {
       id: "crm-video",
-      src: "assets/stories/CRMiner_01_letters_v3_editorial.mp4",
+      src: "/assets/stories/CRMiner_01_letters_v3_editorial.mp4",
       poster: "",
-      label: "CRMiner · Demonstração",
+      label: window.crmT('storiesLabel', 'CRMiner · Demonstração'),
     },
-    // { id: "crm", src: "assets/stories/crm.mp4", poster: "assets/stories/crm-poster.jpg", label: "CRM · Funil de vendas" },
-    // { id: "catalogo",  src: "assets/stories/catalogo.mp4",  poster: "assets/stories/catalogo-poster.jpg",  label: "Catálogo · Produtos" },
-    // { id: "agenda",    src: "assets/stories/agenda.mp4",    poster: "assets/stories/agenda-poster.jpg",    label: "Agenda" },
-    // { id: "financeiro",src: "assets/stories/financeiro.mp4",poster: "assets/stories/financeiro-poster.jpg",label: "Financeiro · Dashboard" },
   ];
 
   if (!STORIES.length) return;
@@ -53,7 +49,7 @@
     overlay.id = "stories-overlay";
     overlay.setAttribute("role", "dialog");
     overlay.setAttribute("aria-modal", "true");
-    overlay.setAttribute("aria-label", "Como funciona o crminer");
+    overlay.setAttribute("aria-label", window.crmT('storiesTitle', 'Como funciona o crminer'));
     overlay.setAttribute("aria-hidden", "true");
 
     var backdrop = document.createElement("div");
@@ -80,20 +76,20 @@
     var idWrap = document.createElement("div");
     idWrap.className = "stories-id";
     var logo = document.createElement("img");
-    logo.src = "assets/logo/logo_white.png";
+    logo.src = "/assets/logo/logo_white.png";
     logo.alt = "crminer";
     idLabel = document.createElement("span");
     idWrap.appendChild(logo);
     idWrap.appendChild(idLabel);
     muteBtn = document.createElement("button");
     muteBtn.className = "stories-mute";
-    muteBtn.setAttribute("aria-label", "Ativar ou desativar som");
+    muteBtn.setAttribute("aria-label", window.crmT('toggleSound', 'Ativar ou desativar som'));
     muteBtn.addEventListener("click", toggleMute);
     updateMuteIcon();
 
     var closeBtn = document.createElement("button");
     closeBtn.className = "stories-close";
-    closeBtn.setAttribute("aria-label", "Fechar");
+    closeBtn.setAttribute("aria-label", window.crmT('close', 'Fechar'));
     closeBtn.innerHTML = "&times;";
     closeBtn.addEventListener("click", close);
 
@@ -118,11 +114,11 @@
     // zonas de toque
     var prevZone = document.createElement("button");
     prevZone.className = "stories-nav prev";
-    prevZone.setAttribute("aria-label", "Anterior");
+    prevZone.setAttribute("aria-label", window.crmT('previous', 'Anterior'));
     prevZone.addEventListener("click", prev);
     var nextZone = document.createElement("button");
     nextZone.className = "stories-nav next";
-    nextZone.setAttribute("aria-label", "Próximo");
+    nextZone.setAttribute("aria-label", window.crmT('next', 'Próximo'));
     nextZone.addEventListener("click", next);
 
     captionEl = document.createElement("div");

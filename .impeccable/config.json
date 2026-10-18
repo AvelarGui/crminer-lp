@@ -1,0 +1,95 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "flat-type-hierarchy",
+        "value": "*",
+        "files": [
+          "/home/jhefersonlv/Documentos/CRMiner/Landing Page crminer/index.html"
+        ],
+        "createdAt": "2026-10-16T00:54:50.037Z",
+        "reason": "A LP tem hierarquia tipográfica clara: título principal entre 1.75 e 3.08rem, corpo entre 0.95 e 1.08rem."
+      },
+      {
+        "rule": "broken-image",
+        "value": "*",
+        "files": [
+          "/home/jhefersonlv/Documentos/CRMiner/Landing Page crminer/blog-artigo.html"
+        ],
+        "createdAt": "2026-10-16T01:14:21.488Z",
+        "reason": "assistant: this article-cover image is hidden until blog.js assigns the published post cover URL; the empty source in this template is intentional"
+      },
+      {
+        "rule": "overused-font",
+        "value": "plus jakarta sans",
+        "files": [
+          "/home/jhefersonlv/Documentos/CRMiner/Landing Page crminer/css/global.css"
+        ],
+        "createdAt": "2026-10-16T01:25:54.546Z",
+        "reason": "Fonte definida como tipografia global da identidade visual da CRMiner."
+      },
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "files": [
+          "/home/jhefersonlv/Documentos/CRMiner/Landing Page crminer/css/hero.css"
+        ],
+        "createdAt": "2026-10-16T01:25:55.087Z",
+        "reason": "Inter é usada apenas no mockup ilustrativo para representar a interface do produto."
+      },
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "/home/jhefersonlv/Documentos/CRMiner/Landing Page crminer/css/global.css"
+        ],
+        "createdAt": "2026-10-16T01:25:55.588Z",
+        "reason": "O alerta aponta para uma faixa dourada horizontal de 4px no topo do plano em destaque; as bordas laterais das imagens são divisórias brancas finas."
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "linkminer.html"
+        ],
+        "createdAt": "2026-10-16T23:39:06.115Z",
+        "reason": "Agent: the bordered video stage intentionally holds edge-to-edge video, not flush text; verified in markup and CSS"
+      },
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "files": [
+          "css/hero.css"
+        ],
+        "createdAt": "2026-10-17T01:06:08.412Z",
+        "reason": "Existing Inter stack is confined to the embedded CRM interface mockup; this hero task only changes color."
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "precos.html"
+        ],
+        "createdAt": "2026-10-17T02:15:42.219Z",
+        "reason": "Agent: pricing sections use an inset .wrap; comparison table cells provide their own padding and the FAQ has padded summaries"
+      },
+      {
+        "rule": "nested-cards",
+        "value": "*",
+        "files": [
+          "precos.html"
+        ],
+        "createdAt": "2026-10-17T02:15:45.018Z",
+        "reason": "Agent: nested p elements are explanatory popovers inside pricing cards, opened from labeled details controls"
+      },
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "createdAt": "2026-10-17T15:48:04.764Z",
+        "reason": "assistant: Inter is the font used by app original/word-web-main/src/app/layout.tsx and globals.css; the user asked the LP to match that front-end design"
+      }
+    ]
+  }
+}
